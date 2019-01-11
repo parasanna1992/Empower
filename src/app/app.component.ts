@@ -6,5 +6,16 @@ import {Directive, HostListener} from "@angular/core";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  toggleValue=true;
+  contentTabWidth="70%";
+  toggleTitle(){
+    this.toggleValue=!(this.toggleValue);
+    if(this.toggleValue==false){
+      this.contentTabWidth="98%"
+    }else{
+      this.contentTabWidth="70%"
+    }
+   
+    console.log("called")
+  }
 }

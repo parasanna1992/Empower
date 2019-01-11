@@ -390,7 +390,7 @@ a{
 }
 .main_left{
 	float: left;
-	width: 70%;
+	/* width: 70%; */
 	position: relative;
 }
 .empower_sec{
@@ -890,4 +890,13 @@ hr{
 
 .name-list .btn .fa-close{
     padding-left: 10px;
+}
+.minmize-arrow{
+    position: absolute;
+    z-index: 9999;
+    top: 50%;
+    width: 20px;
+    background-color: #eee;
+    padding: 2px;
+    border-radius: 18px;
 }

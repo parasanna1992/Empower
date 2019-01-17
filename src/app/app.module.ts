@@ -6,13 +6,21 @@ import { AppComponent } from './app.component';
 import { UserChartsListComponent } from './components/left-side-nav/user-charts-list/user-charts-list.component';
 import { UserChatActiveComponent } from './components/chat-content/user-chat-active/user-chat-active.component';
 import { EmpowerActivitiesComponent } from './components/right-side-nav/empower-activities/empower-activities.component';
+import { LoginPageComponent } from './components/login/login-page/login-page.component';
+import { EmpowerDashboardComponent } from './components/dashboard/empower-dashboard/empower-dashboard.component';
+import { SignUpComponent } from './components/login/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserChartsListComponent,
     UserChatActiveComponent,
-    EmpowerActivitiesComponent
+    EmpowerActivitiesComponent,
+    LoginPageComponent,
+    EmpowerDashboardComponent,
+    SignUpComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

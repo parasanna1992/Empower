@@ -900,3 +900,6 @@ hr{
     padding: 2px;
     border-radius: 18px;
 }
+.error_msg{
+    color: red;
+}

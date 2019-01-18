@@ -10,7 +10,9 @@ import { LoginPageComponent } from './components/login/login-page/login-page.com
 import { EmpowerDashboardComponent } from './components/dashboard/empower-dashboard/empower-dashboard.component';
 import { SignUpComponent } from './components/login/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,8 +25,11 @@ import { ForgotPasswordComponent } from './components/login/forgot-password/forg
     ForgotPasswordComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

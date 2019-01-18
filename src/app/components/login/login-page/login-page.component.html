@@ -2,19 +2,31 @@
 	<h2 class="login-title">- Please Login -</h2>
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<form>
+			<form  novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">				
 				<div class="input-group login-userinput">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-					<input id="txtUser" type="text" class="form-control" name="username" placeholder="Username">
+					<input id="txtUser" type="text" class="form-control" name="username" placeholder="Username" formControlName="username" (click)="hideError()">
+					
 				</div>
+				<div class="error_msg"  *ngIf="loginForm.get('username').touched && loginForm.get('username').hasError('required')"> 
+						Username is required.  
+					   </div>
 				<div class="input-group">
 					<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-					<input  id="txtPassword" type="password" class="form-control" name="password" placeholder="Password">
+					<input  id="txtPassword" type="password" class="form-control" name="password" placeholder="Password" formControlName="password" (click)="hideError()">
 					<span id="showPassword" class="input-group-btn">
             <button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
-          </span>  
+		  </span>  
+		  
 				</div>
-				<button class="btn btn-primary btn-block login-button" (click)="loginCheck()"><i class="fa fa-sign-in"></i> Login</button>
+				<div class="error_msg"  *ngIf="loginForm.get('password').touched && loginForm.get('password').hasError('required')"> 
+						Password is required.  
+					   </div>
+					   
+				<button class="btn btn-primary btn-block login-button"><i class="fa fa-sign-in"></i> Login</button>
+				<div class="error_msg" *ngIf="invalidCredentials==true">
+						Invalid Credentials
+					  </div>
 				<div class="checkbox login-options">
 					<label><input type="checkbox"/> Remember Me</label>
 					<a class="login-forgot" (click)="forgotPassword()" >Forgot Username/Password?</a>

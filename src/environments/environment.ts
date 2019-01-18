@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  host:' http://ec2-54-88-194-105.compute-1.amazonaws.com:3000/',
+  host:'http://ec2-13-233-124-19.ap-south-1.compute.amazonaws.com:3000/api/v1/',
   //host1:' http://ec2-54-88-194-105.compute-1.amazonaws.com:3004/'
 
 

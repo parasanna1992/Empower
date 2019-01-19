@@ -7,13 +7,30 @@ import { LeftMenuService } from '../../../services/left-menu.service';
   styleUrls: ['./user-charts-list.component.css']
 })
 export class UserChartsListComponent implements OnInit {
-
-  constructor(private leftMenuService: LeftMenuService) { }
+  userInfo: any = {};
+  groupList = [];
+  roomList = [];
+  
+  constructor(private leftMenuService: LeftMenuService) { 
+    for(let i = 0;i<3; i++){
+      this.groupList.push(this.roomList);
+    }
+  }
 
   ngOnInit() {
+   
     let id = sessionStorage.getItem('userId');
-    this.leftMenuService.getAllRooms(id).subscribe((response: any)=>{
-      alert(JSON.stringify(response))
+    this.leftMenuService.getUserInfo(id).subscribe((response: any)=>{
+      this.userInfo = response.user;
+    })
+    this.leftMenuService.getGroups().subscribe((response: any)=>{
+      this.groupList[1] = response.groups;
+    })
+    this.leftMenuService.getChannel().subscribe((response: any)=>{
+      this.groupList[0] = response.channels;
+    })
+    this.leftMenuService.getRooms().subscribe((response: any)=>{
+      this.groupList[2] = response.ims;
     })
     
   }

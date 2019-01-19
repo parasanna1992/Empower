@@ -8,7 +8,17 @@ export class LeftMenuService {
 
   constructor(private dataService: DataService) { }
 
-  getAllRooms(id: string){
+  getUserInfo(id: string){
     return this.dataService.get('users.info?userId='+id)
   }
+  getGroups(){
+    return this.dataService.get('groups.list');
+  }
+  getChannel(){
+    return this.dataService.get('channels.list.joined');
+  }
+  getRooms(){
+    return this.dataService.get('im.list');
+  }
+  
 }

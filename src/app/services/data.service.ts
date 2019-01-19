@@ -17,6 +17,7 @@ export class DataService {
     "Access-Control-Allow-Origin": "*"
   }
   constructor(private http: HttpClient) { 
+
     this.setHeaders(sessionStorage.getItem("OAuthToken"), sessionStorage.getItem("userId"));
     this.baseUrl= environment.host;
   }
@@ -25,17 +26,15 @@ export class DataService {
     this.oauthToken = oauthToken;
     this.httpOptions = {
       headers: new HttpHeaders({
-        "Auth-Token": oauthToken,
-        "User-Id": userId,
-        "Access-Control-Allow-Origin":"*",
-        "Access-Control-Allow-Methods": 'HEAD, GET, POST, PUT, PATCH, DELETE',
-        "Access-Control-Allow-Headers": 'Origin, Content-Type, X-Auth-Token',
-        "Content-type" : "application/json"
+       "Content-type" : "application/json",
+       "X-Auth-Token": oauthToken,
+       "X-User-Id": userId
       })
     };
   }
                                 
   get(contextUrl : string){
+
     console.log(this.baseUrl+contextUrl);
     return this.http.get(this.baseUrl+ contextUrl , this.httpOptions);
   }

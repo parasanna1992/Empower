@@ -6,7 +6,7 @@
                 <li class="user_profile">
                     <a href="#">
                     <img src="../../../../assets/download.jpg" alt="img">
-                    <span>Srikanth</span>
+                    <span>{{userInfo.name}}</span>
                 </a>
                 </li>
                 <li>
@@ -33,20 +33,29 @@
         <div class="chat_list">
             <a href="#" class="main_list">Channels </a>
             <ul class="list-unstyled">
-                <li><a href="#">
+                <li *ngFor="let group of groupList[0]">
+                    <a href="#">
                      
                         <div class="chat_con">
-                            <h6># all general</h6>
+                            <h6># {{group.name}}</h6>
                         </div>
                 </a></li>
-                <li><a href="#">
-                    
-                        <div class="chat_con">
-                            <h6># india office</h6>
-                        </div>
-                </a></li>
+                
             </ul>
         </div>
+        <div class="chat_list">
+                <a href="#" class="main_list">Private Groups </a>
+                <ul class="list-unstyled">
+                    <li *ngFor="let group of groupList[1]">
+                        <a href="#">
+                         
+                            <div class="chat_con">
+                                <h6># {{group.name}}</h6>
+                            </div>
+                    </a></li>
+                    
+                </ul>
+            </div>
         <div class="chat_list dir_msg">
             <a href="#" class="main_list">Direct Messages</a>
             <ul class="list-unstyled">

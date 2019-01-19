@@ -27,11 +27,11 @@ export class LoginPageComponent implements OnInit {
     })
   }
   get f() { return this.loginForm.controls; }
- SS
+ 
   onSubmit(value){
     
-    var oAuthToken;
-    var userId;
+    let oAuthToken: string;
+    let userId: string;
     console.log(value);
     this.loginService.loginApi(value).subscribe((response: any)=> {
       if(response.status == 'success'){
@@ -39,6 +39,10 @@ export class LoginPageComponent implements OnInit {
       userId = response.data.userId;
       sessionStorage.setItem("OAuthToken", oAuthToken);
       sessionStorage.setItem("userId", userId);
+      
+      this.loginService.getData(this.responseData).subscribe((response)=>{
+        console.log(response);
+      })
       this.router.navigate(['/dashboard']);
       }   
     }, error => this.invalidCredentials=true)

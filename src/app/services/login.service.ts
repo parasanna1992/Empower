@@ -11,4 +11,7 @@ export class LoginService {
   loginApi(value: any){
     return this.dataService.login("login", value);
   }
+  getData(data: any){
+    return this.dataService.get("channels.info"+ data);
+  }
 }

@@ -6,10 +6,10 @@ import { Subject } from '../../../node_modules/rxjs';
 })
 export class AppStateService {
 
-  public _subject = new Subject<String>();
+  public _subject = new Subject<any>();
   public event = this._subject.asObservable();
 
-  public publish(data: string) {
+  public publish(data: any) {
     this._subject.next(data);
   } 
 }

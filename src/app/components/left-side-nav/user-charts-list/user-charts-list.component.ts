@@ -12,8 +12,9 @@ export class UserChartsListComponent implements OnInit {
   userInfo: any = {};
   groupList = [];
   roomList = [];
-  
+  typeList = [];
   constructor(private leftMenuService: LeftMenuService,private router : Router, private appState: AppStateService) { 
+    this.typeList = ['Channel', 'Group', 'Direct Message'];
     for(let i = 0;i<3; i++){
       this.groupList.push(this.roomList);
     }
@@ -34,14 +35,18 @@ export class UserChartsListComponent implements OnInit {
     })
     this.leftMenuService.getRooms().subscribe((response: any)=>{
       this.groupList[2] = response.ims;
-      // for(let item of this.groupList[2]){
-      //   alert(this.item.indexOf())
-      // }
     })
     
   }
-  onClickChannel(id: string){
-    this.appState.publish(id);
+  onClickChannel(id: string, type: string, name: string){
+    let object: any={};
+    object.id = id;
+    object.type = type
+    if(type=='Direct Message'){
+      object.name = name;
+    }
+  
+    this.appState.publish(object);
   }
 
   logout(){

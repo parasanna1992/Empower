@@ -10,4 +10,16 @@ export class UserChatActiveService {
   getChannelHistory(id: any){
     return this.dataService.get('channels.history?roomId='+id);
   }
+  getGroupHistory(id: any){
+    return this.dataService.get('groups.messages?roomId='+id);
+  }
+  getDirectMessageHistory(id: any){
+    return this.dataService.get('im.history?roomId='+id);
+  }
+  getChannelInfo(id: any){
+    return this.dataService.get('channels.info?roomId='+id);
+  }
+  getGroupInfo(id: any){
+    return this.dataService.get('groups.info?roomId='+id);
+  }
 }

@@ -7,7 +7,8 @@
         <div class="user_profile">
             <a href="#">
             <img src="../../../../assets/girl_img.png" alt="img">
-            <p>Kalpana <span>0 Messages</span></p>
+            <p>{{titleMenu.name}} 
+            <span>0 Messages</span></p>
         </a>
         </div>
         <div class="social_block">
@@ -21,21 +22,12 @@
     </div>
     <div class="chat_content">
         <ul>
-        <li *ngFor="let item of messagesSenderList"> 
-            <div class="message_block msg_left" *ngIf="item.u._id!=id;else receiver">
+        <li *ngFor="let item of messagesList" class={{returnChatCss(item.u._id)}}>
             <img src="../../../../assets/download.jpg" alt="img">
-            <p>{{item.msg}}
+            <p> {{item.msg}}
             </p>
-            <span>8:40 AM, Today</span>
-            </div>
+            <span>{{item.ts | date}}</span>
         </li>
-        <li #reciever>
-            <div  class="message_block msg_right">
-            <img src="../../../../assets/girls-profile.jpg" alt="img">
-            <p>{{item.msg}}</p>
-            <span>8:40 AM, Today</span>
-        </div>
-    </li    >
     </ul>
     </div>
     <div class="bottom_content">

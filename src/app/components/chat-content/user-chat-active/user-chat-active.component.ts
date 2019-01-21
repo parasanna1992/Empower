@@ -12,18 +12,60 @@ export class UserChatActiveComponent implements OnInit {
   messagesSenderList = [];
   messagesReceiverList = [];
   id;
+  titleMenu: any={};
   constructor(private appState: AppStateService, private userChatActiveService: UserChatActiveService) { }
   
 
   ngOnInit() {
     this.id = sessionStorage.getItem('userId');
-    this.appState.event.subscribe((data: string) => {
-      this.userChatActiveService.getChannelHistory(data).subscribe((response: any)=>{
-        this.messagesList = response.messages;
-        this.messagesSenderList = this.messagesList.filter(x=> x.u._id!=this.id);
-        this.messagesReceiverList = this.messagesList.filter(x=> x.u._id==this.id);
-      })  
+    this.appState.event.subscribe((data: any) => {
+      if(data.type=='Channel'){
+        this.userChatActiveService.getChannelInfo(data.id).subscribe((response: any)=>{
+          this.titleMenu.name = response.channel.name;
+        
+        this.userChatActiveService.getChannelHistory(data.id).subscribe((response: any)=>{
+          this.messagesList = response.messages.sort((a: any, b: any) =>
+          new Date(a._updatedAt).getTime() - new Date(b._updatedAt).getTime()
+      );
+          
+        }) 
+      })
+      }
+      if(data.type=='Group'){
+        this.userChatActiveService.getGroupInfo(data.id).subscribe((response: any)=>{
+          this.titleMenu.name = response.group.name;
+        this.userChatActiveService.getGroupHistory(data.id).subscribe((response: any)=>{
+          this.messagesList = response.messages.sort((a: any, b: any) =>
+          new Date(a._updatedAt).getTime() - new Date(b._updatedAt).getTime()
+      );
+          
+        }) 
+      })
+      }
+      if(data.type=='Direct Message'){
+        this.titleMenu.name = data.name;
+        alert(data.name)
+        this.userChatActiveService.getDirectMessageHistory(data.id).subscribe((response: any)=>{
+          this.messagesList = response.messages.sort((a: any, b: any) =>
+          new Date(a._updatedAt).getTime() - new Date(b._updatedAt).getTime()
+      );
+          
+        }) 
+      }
+
+       
     });
+  }
+  returnChatCss(id){
+    let rightChatCss= 'message_block msg_left';
+    let leftChatCss= 'message_block msg_right';
+
+    if(id==this.id){
+      return leftChatCss;
+    }
+    else{
+      return rightChatCss;
+    }
   }
 
 }

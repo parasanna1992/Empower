@@ -37,7 +37,7 @@
             <a class="main_list">Channels </a>
             <ul class="list-unstyled">
                 <li *ngFor="let group of groupList[0]" >
-                    <a (click)="onClickChannel(group._id)">
+                    <a (click)="onClickChannel(group._id, typeList[0])">
                      
                         <div class="chat_con">
                             <h6># {{group.name}}</h6>
@@ -50,7 +50,7 @@
                 <a class="main_list">Private Groups </a>
                 <ul class="list-unstyled">
                     <li *ngFor="let group of groupList[1]">
-                        <a>
+                        <a (click)="onClickChannel(group._id, typeList[1])">
                          
                             <div class="chat_con">
                                 <h6># {{group.name}}</h6>
@@ -62,44 +62,14 @@
         <div class="chat_list dir_msg">
             <a class="main_list">Direct Messages</a>
             <ul class="list-unstyled">
-                <li><a>
-                
-                <div class="chat_con">
-                    <h6 class="active">Kiran</h6>
-                </div>
+                <li *ngFor="let group of groupList[2]">
+                    <a (click)="onClickChannel(group._id, typeList[2],group.usernames)">
+                      
+                        <div class="chat_con">
+                            <h6># {{group.usernames}}</h6>
+                        </div>
                 </a></li>
-                <li>
-                    <a>
-                        
-                        <div class="chat_con">
-                            <h6 class="active">Swetha</h6>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        
-                        <div class="chat_con">
-                            <h6>Kalpana</h6>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        
-                        <div class="chat_con">
-                            <h6>Arun</h6>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        
-                        <div class="chat_con">
-                            <h6 class="active">Naveen</h6>
-                        </div>
-                    </a>
-                </li>
+                
             </ul>
         </div>
     </div>

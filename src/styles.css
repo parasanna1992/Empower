@@ -36,8 +36,9 @@ a{
 	margin-bottom: 12px;
 }
 .profile_block ul {
-	display: table;
-	width:100%;
+	display: inline-block;
+	margin-top: 10px;
+	
 }
 .profile_block ul li{
 	display: table-cell;
@@ -46,10 +47,27 @@ a{
 }
 .profile_block ul li a{
 	color: #333;
+	display: block;
 }
-.user_profile a{
-	display: flex;
-
+.profile_block ul li a i{
+	font-size: 16px;
+}
+.profile_block .dropdown-menu{
+	left: auto;
+	right: 0;
+}
+.profile_block .user_profile{
+	display: inline-block;
+}
+.dropdown-menu .dropdown-item{
+	padding: 0 10px;
+}
+.user_profile a {
+    display: flex;
+}
+.show_sec .dropdown-menu{
+    display:block;
+    cursor: pointer;
 }
 .user_profile a img{
 	width:35px;

@@ -13,6 +13,7 @@ export class UserChartsListComponent implements OnInit {
   groupList = [];
   roomList = [];
   typeList = [];
+  isClassVisible=false;
   constructor(private leftMenuService: LeftMenuService,private router : Router, private appState: AppStateService) { 
     this.typeList = ['Channel', 'Group', 'Direct Message'];
     for(let i = 0;i<3; i++){
@@ -52,5 +53,12 @@ export class UserChartsListComponent implements OnInit {
   logout(){
     this.router.navigate(['/login']);
     sessionStorage.clear();
+  }
+  styleAdd(){
+    this.isClassVisible=true;
+  }
+  leave(){
+    this.isClassVisible=false;
+    console.log("called")
   }
 }

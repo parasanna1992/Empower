@@ -1,7 +1,7 @@
 
 <div class="sidebar">
     <div class="top_header">
-        <div class="profile_block">
+        <!-- <div class="profile_block">
             <ul class="list-unstyled">
                 <li class="user_profile">
                     <a>
@@ -12,11 +12,36 @@
                 <li>
                     <a><i class="fa fa-ellipsis-h"></i></a>
                 </li>
-                <li>
-                    <button class="btn btn-primary" (click)="logout();">Log Out</button>
-                </li>
+               
             </ul>
-        </div>
+        </div> -->
+        <div class="profile_block">
+            <div class="user_profile">
+              <a>
+                <img src="../../../../assets/download.jpg" alt="img" />
+                <span>{{ userInfo.name }}</span>
+              </a>
+            </div>
+            <ul class="list-unstyled pull-right">
+              <li [ngClass]="{'show_sec': isClassVisible }" class="dropdown">
+                <a (click)="styleAdd()"
+                  class="dropdown-toggle"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fa fa-ellipsis-h"></i
+                ></a>
+                <div (mouseleave)="leave($event)" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item">Online</a>
+                  <a class="dropdown-item">Offline</a>
+                  <a class="dropdown-item">Busy</a>
+                  <a class="dropdown-item">Unavailable</a>
+                  <a class="dropdown-item" (click)="logout()">Log Out</a>
+                </div>
+              </li>
+            </ul>
+          </div>
         <div class="search_block">
             <div class="form-group">
                 <input type="text" placeholder="Search.." name="search" class="form-control">

@@ -1,0 +1,31 @@
+.staus_icon_online{
+    background-color: green;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+.staus_icon_offline{
+    background-color: gray;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+.staus_icon_busy{
+    background-color: red;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+.staus_icon_unavailable{
+    background-color: yellow;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+.test{
+    background-color: aliceblue;
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeftMenuService } from '../../../services/left-menu.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-charts-list',
@@ -11,7 +12,7 @@ export class UserChartsListComponent implements OnInit {
   groupList = [];
   roomList = [];
   
-  constructor(private leftMenuService: LeftMenuService) { 
+  constructor(private leftMenuService: LeftMenuService,private router : Router) { 
     for(let i = 0;i<3; i++){
       this.groupList.push(this.roomList);
     }
@@ -34,5 +35,8 @@ export class UserChartsListComponent implements OnInit {
     })
     
   }
-
+  logout(){
+    this.router.navigate(['/login']);
+    sessionStorage.clear();
+  }
 }

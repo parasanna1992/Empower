@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LeftMenuService } from '../../../services/left-menu.service';
-import { Router } from '@angular/router';
+import { AppStateService } from '../../../services/app-state.service';
+import { Router } from '../../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-user-charts-list',
@@ -12,7 +13,7 @@ export class UserChartsListComponent implements OnInit {
   groupList = [];
   roomList = [];
   
-  constructor(private leftMenuService: LeftMenuService,private router : Router) { 
+  constructor(private leftMenuService: LeftMenuService,private router : Router, private appState: AppStateService) { 
     for(let i = 0;i<3; i++){
       this.groupList.push(this.roomList);
     }
@@ -21,6 +22,7 @@ export class UserChartsListComponent implements OnInit {
   ngOnInit() {
    
     let id = sessionStorage.getItem('userId');
+    //alert(id);
     this.leftMenuService.getUserInfo(id).subscribe((response: any)=>{
       this.userInfo = response.user;
     })
@@ -32,9 +34,16 @@ export class UserChartsListComponent implements OnInit {
     })
     this.leftMenuService.getRooms().subscribe((response: any)=>{
       this.groupList[2] = response.ims;
+      // for(let item of this.groupList[2]){
+      //   alert(this.item.indexOf())
+      // }
     })
     
   }
+  onClickChannel(id: string){
+    this.appState.publish(id);
+  }
+
   logout(){
     this.router.navigate(['/login']);
     sessionStorage.clear();

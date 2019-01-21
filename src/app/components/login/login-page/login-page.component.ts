@@ -35,14 +35,12 @@ export class LoginPageComponent implements OnInit {
     console.log(value);
     this.loginService.loginApi(value).subscribe((response: any)=> {
       if(response.status == 'success'){
+      
       oAuthToken = response.data.authToken;
       userId = response.data.userId;
+      this.loginService.setHeader(oAuthToken, userId);
       sessionStorage.setItem("OAuthToken", oAuthToken);
       sessionStorage.setItem("userId", userId);
-      
-      this.loginService.getData(this.responseData).subscribe((response)=>{
-        console.log(response);
-      })
       this.router.navigate(['/dashboard']);
       }   
     }, error => this.invalidCredentials=true)

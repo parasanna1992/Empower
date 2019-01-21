@@ -20,51 +20,23 @@
         </div>
     </div>
     <div class="chat_content">
-        <div class="message_block msg_left">
+        <ul>
+        <li *ngFor="let item of messagesSenderList"> 
+            <div class="message_block msg_left" *ngIf="item.u._id!=id;else receiver">
             <img src="../../../../assets/download.jpg" alt="img">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            <p>{{item.msg}}
+            </p>
             <span>8:40 AM, Today</span>
-        </div>
-        <div class="message_block msg_right">
+            </div>
+        </li>
+        <li #reciever>
+            <div  class="message_block msg_right">
             <img src="../../../../assets/girls-profile.jpg" alt="img">
-            <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+            <p>{{item.msg}}</p>
             <span>8:40 AM, Today</span>
         </div>
-        <div class="message_block msg_left">
-            <img src="../../../../assets/download.jpg" alt="img">
-            <p>It is a long established fact that a reader will be distracted by the readable content of a page</p>
-            <span>8:40 AM, Today</span>
-        </div>
-        <div class="message_block msg_right">
-            <img src="../../../../assets/girls-profile.jpg" alt="img">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <span>8:40 AM, Today</span>
-        </div>
-        <div class="message_block msg_left">
-            <img src="../../../../assets/download.jpg" alt="img">
-            <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
-            <span>8:40 AM, Today</span>
-        </div>
-        <div class="message_block msg_right">
-            <img src="../../../../assets/girls-profile.jpg" alt="img">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <span>8:40 AM, Today</span>
-        </div>
-        <div class="message_block msg_right">
-            <img src="../../../../assets/girls-profile.jpg" alt="img">
-            <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
-            <span>8:40 AM, Today</span>
-        </div>
-        <div class="message_block msg_left">
-            <img src="../../../../assets/download.jpg" alt="img">
-            <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
-            <span>8:40 AM, Today</span>
-        </div>
-        <div class="message_block msg_right">
-            <img src="../../../../assets/girls-profile.jpg" alt="img">
-            <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
-            <span>8:40 AM, Today</span>
-        </div>
+    </li    >
+    </ul>
     </div>
     <div class="bottom_content">
         <div class="form-group">

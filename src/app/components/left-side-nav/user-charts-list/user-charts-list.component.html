@@ -36,8 +36,8 @@
         <div class="chat_list">
             <a class="main_list">Channels </a>
             <ul class="list-unstyled">
-                <li *ngFor="let group of groupList[0]">
-                    <a>
+                <li *ngFor="let group of groupList[0]" >
+                    <a (click)="onClickChannel(group._id)">
                      
                         <div class="chat_con">
                             <h6># {{group.name}}</h6>

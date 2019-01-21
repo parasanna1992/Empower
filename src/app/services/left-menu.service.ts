@@ -20,5 +20,8 @@ export class LeftMenuService {
   getRooms(){
     return this.dataService.get('im.list');
   }
+  getChatHistory(){
+    
+  }
   
 }

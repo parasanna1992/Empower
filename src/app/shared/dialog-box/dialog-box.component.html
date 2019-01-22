@@ -1,26 +1,36 @@
 
+  <div class="search_popup">
   <div class="row">
     <h4><i class="fa fa-search" (click)="openDialog()" aria-hidden="true"></i>  Search Messages </h4>
     <p>You can search using RegExp. e.g. /^text$/i </p>
   </div>
+  <!-- <div class="row">
+    <input type="text" class="form-control" placeholder="Search Here.." [(ngModel)]="searchValue" (ngModelChange)="searchResults()" [ngModelOptions]="{standalone: true}">
+  </div> -->
   <div class="row">
-    <input matInput placeholder="Search Here.." [(ngModel)]="searchValue" (ngModelChange)="searchResults()" [ngModelOptions]="{standalone: true}">
+  <div class="form-group has-feedback has-search">
+      <span class="glyphicon glyphicon-search form-control-feedback"></span>
+      <input type="text" class="form-control" placeholder="Search Here.." [(ngModel)]="searchValue" (ngModelChange)="searchResults()" [ngModelOptions]="{standalone: true}">
+    </div>
   </div>
   <div class="row">
-    <div class="social_block">
+    <div class="chat_search">
       <ul class="list-unstyled">
           <li *ngFor="let message of messagesList">
               <label>{{message.ts}}</label>
-              <span class="user_profile">
-              <a><img src="../../../../assets/download.jpg" alt="img"></a>
-              </span>
-              <label>{{message.u.username}}</label>
-              <label>{{message._updatedAt}}</label>
-              <label>#{{message.rid}}</label>
+              <img src="../../../../assets/download.jpg" alt="img">
+            
+              <p>
+                  <span>{{message.u.username}}</span>
+                  <span>{{message._updatedAt}}</span>
+                  <!-- <span>#{{message.rid}}</span> -->
+                  <span class="msg_text">{{message.msg}}</span>
+              </p>
+             
               <!-- <label>{{message.u.name}}</label> -->
-              <label>{{message.msg}}</label>
+              
           </li>
       </ul>
   </div>
   </div>
-
+</div>

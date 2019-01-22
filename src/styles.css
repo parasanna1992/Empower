@@ -60,7 +60,9 @@ a{
 	display: inline-block;
 }
 .dropdown-menu .dropdown-item{
-	padding: 0 10px;
+    padding: 0 10px;
+    font-size: 13px;
+    margin-bottom: 5px;
 }
 .user_profile a {
     display: flex;
@@ -68,6 +70,8 @@ a{
 .show_sec .dropdown-menu{
     display:block;
     cursor: pointer;
+    padding-top: 10px;
+  
 }
 .user_profile a img{
 	width:35px;
@@ -911,7 +915,7 @@ hr{
 }
 .minmize-arrow{
     position: absolute;
-    z-index: 9999;
+    z-index: 1000;
     top: 50%;
     width: 20px;
     background-color: #eee;
@@ -920,4 +924,43 @@ hr{
 }
 .error_msg{
     color: red;
+}
+#showPassword .btn{
+    border: 1px solid #ccc !important;
+}
+/* popup styles */
+.search_popup{
+    width: 320px;
+    margin: 0 auto;
+}
+.search_popup h4{
+    margin-bottom: 25px;
+}
+.search_popup p{
+    margin-bottom: 15px;
+}
+.chat_search label{
+    width:100%;;
+}
+.chat_search ul li{
+    display: block;
+}
+.chat_search ul li img{
+    width: 40px;
+    height: 40px;
+}
+.chat_search ul li p{
+    display: inline-block;
+    vertical-align: top;
+    padding-left:15px;
+}
+.chat_search ul li p span{
+    margin-right:5px;
+}
+.chat_search ul li p span.msg_text{
+    display: block;
+}
+.chat_search ul li:hover p{
+    background: #c7edfc;
+    cursor: pointer;
 }

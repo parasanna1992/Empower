@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AppStateService } from '../../../services/app-state.service';
 import { UserChatActiveService } from '../../../services/user-chat-active.service';
-
+import {Inject} from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { DialogBoxComponent } from 'src/app/shared/dialog-box/dialog-box.component';
 @Component({
   selector: 'app-user-chat-active',
   templateUrl: './user-chat-active.component.html',
   styleUrls: ['./user-chat-active.component.css']
 })
+
 export class UserChatActiveComponent implements OnInit {
   messagesList = [];
   messagesSenderList = [];
@@ -14,7 +17,7 @@ export class UserChatActiveComponent implements OnInit {
   id;
   titleMenu: any={};
   defaultGeneral="GENERAL"
-  constructor(private appState: AppStateService, private userChatActiveService: UserChatActiveService) { }
+  constructor(public dialog: MatDialog,private appState: AppStateService, private userChatActiveService: UserChatActiveService) { }
   
 
   ngOnInit() {
@@ -77,5 +80,10 @@ export class UserChatActiveComponent implements OnInit {
       return rightChatCss;
     }
   }
-
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
+      height: '600px',
+      width: '600px',
+    });
+  }
 }

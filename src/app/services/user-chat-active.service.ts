@@ -22,4 +22,7 @@ export class UserChatActiveService {
   getGroupInfo(id: any){
     return this.dataService.get('groups.info?roomId='+id);
   }
+  getSearchData(id: any,searchText:string){
+    return this.dataService.get('chat.search?roomId='+id+'&searchText='+searchText);
+  }
 }

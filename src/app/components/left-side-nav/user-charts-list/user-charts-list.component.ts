@@ -40,6 +40,7 @@ export class UserChartsListComponent implements OnInit {
     
   }
   onClickChannel(id: string, type: string, name: string){
+    sessionStorage.removeItem('roomId');
     let object: any={};
     object.id = id;
     object.type = type
@@ -48,7 +49,7 @@ export class UserChartsListComponent implements OnInit {
     }
   
     this.appState.publish(object);
-    console.log(object);
+   sessionStorage.setItem('roomId',object.id);
   }
 
   logout(){

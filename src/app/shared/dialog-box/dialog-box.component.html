@@ -1,0 +1,26 @@
+
+  <div class="row">
+    <h4><i class="fa fa-search" (click)="openDialog()" aria-hidden="true"></i>  Search Messages </h4>
+    <p>You can search using RegExp. e.g. /^text$/i </p>
+  </div>
+  <div class="row">
+    <input matInput placeholder="Search Here.." [(ngModel)]="searchValue" (ngModelChange)="searchResults()" [ngModelOptions]="{standalone: true}">
+  </div>
+  <div class="row">
+    <div class="social_block">
+      <ul class="list-unstyled">
+          <li *ngFor="let message of messagesList">
+              <label>{{message.ts}}</label>
+              <span class="user_profile">
+              <a><img src="../../../../assets/download.jpg" alt="img"></a>
+              </span>
+              <label>{{message.u.username}}</label>
+              <label>{{message._updatedAt}}</label>
+              <label>#{{message.rid}}</label>
+              <!-- <label>{{message.u.name}}</label> -->
+              <label>{{message.msg}}</label>
+          </li>
+      </ul>
+  </div>
+  </div>
+

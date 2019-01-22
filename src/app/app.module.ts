@@ -11,8 +11,10 @@ import { EmpowerDashboardComponent } from './components/dashboard/empower-dashbo
 import { SignUpComponent } from './components/login/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/login/forgot-password/forgot-password.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
+import { DialogBoxComponent } from './shared/dialog-box/dialog-box.component';
+import { MatDialogModule, MatFormFieldModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +24,8 @@ import {HttpClientModule} from '@angular/common/http';
     LoginPageComponent,
     EmpowerDashboardComponent,
     SignUpComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    DialogBoxComponent
   ],
   imports: [
     FormsModule,
@@ -30,6 +33,12 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatFormFieldModule 
+  ],
+  entryComponents:[
+    DialogBoxComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

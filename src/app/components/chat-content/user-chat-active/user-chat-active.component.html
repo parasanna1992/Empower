@@ -2,10 +2,10 @@
 <div class="content">
     <div class="profile_content">
         <div class="arrow_icon">
-            <a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+            <a><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
         </div>
         <div class="user_profile">
-            <a href="#">
+            <a>
             <img src="../../../../assets/girl_img.png" alt="img">
             <p>{{titleMenu.name}} 
             <span>0 Messages</span></p>
@@ -13,12 +13,13 @@
         </div>
         <div class="social_block">
             <ul class="list-unstyled">
-                <li><a href="#"><i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i></a></li>
-                <li><a href="#" class="empower_btn"><i class="fa fa-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a><i class="fa fa-video-camera" aria-hidden="true"></i></a></li>
+                <li><a><i class="fa fa-phone" aria-hidden="true"></i></a></li>
+                <li><a><i class="fa fa-user-plus" aria-hidden="true"></i></a></li>
+                <li><a  class="empower_btn"><i class="fa fa-search" (click)="openDialog()" aria-hidden="true"></i></a></li>
             </ul>
         </div>
+        <!-- <button mat-button (click)="openDialog()">Open dialog</button> -->
     </div>
     <div class="chat_content">
         <ul>
@@ -35,7 +36,7 @@
             <textarea  class="form-control">Type a message here..</textarea>
             <!-- <input type="text" placeholder="Type a message here.." name="search" class="form-control"> -->
             <button type="submit" class="btn"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-            <a href="#"><i class="fa fa-paperclip" aria-hidden="true"></i></a>
+            <a><i class="fa fa-paperclip" aria-hidden="true"></i></a>
         </div>
     </div>
 </div>

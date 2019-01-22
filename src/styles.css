@@ -310,6 +310,8 @@ a{
 	overflow-y: auto;
     max-height: calc(100vh - 128px);
     min-height: calc(100vh - 128px);
+    display: flex;
+    flex-direction: column-reverse;
 }
 .message_block{
 	display: table;

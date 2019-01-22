@@ -48,6 +48,7 @@ export class UserChartsListComponent implements OnInit {
     }
   
     this.appState.publish(object);
+    console.log(object);
   }
 
   logout(){

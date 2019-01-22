@@ -13,11 +13,21 @@ export class UserChatActiveComponent implements OnInit {
   messagesReceiverList = [];
   id;
   titleMenu: any={};
+  defaultGeneral="GENERAL"
   constructor(private appState: AppStateService, private userChatActiveService: UserChatActiveService) { }
   
 
   ngOnInit() {
+    
     this.id = sessionStorage.getItem('userId');
+    this.titleMenu.name="general";
+    this.userChatActiveService.getChannelHistory(this.defaultGeneral).subscribe((response: any)=>{
+      this.messagesList = response.messages.sort((a: any, b: any) =>
+      new Date(a._updatedAt).getTime() - new Date(b._updatedAt).getTime()
+     
+  );
+      
+    }) 
     this.appState.event.subscribe((data: any) => {
       if(data.type=='Channel'){
         this.userChatActiveService.getChannelInfo(data.id).subscribe((response: any)=>{

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AppStateService } from '../../../services/app-state.service';
 import { UserChatActiveService } from '../../../services/user-chat-active.service';
 import {Inject} from '@angular/core';
@@ -11,6 +11,8 @@ import { DialogBoxComponent } from 'src/app/shared/dialog-box/dialog-box.compone
 })
 
 export class UserChatActiveComponent implements OnInit {
+  @ViewChild('typeIt') private elementRef: ElementRef;
+  
   messagesList = [];
   messagesSenderList = [];
   messagesReceiverList = [];
@@ -21,7 +23,7 @@ export class UserChatActiveComponent implements OnInit {
   
 
   ngOnInit() {
-    
+    this.elementRef.nativeElement.focus();
     this.id = sessionStorage.getItem('userId');
     this.titleMenu.name="general";
     this.userChatActiveService.getChannelHistory(this.defaultGeneral).subscribe((response: any)=>{
@@ -43,6 +45,7 @@ export class UserChatActiveComponent implements OnInit {
           
         }) 
       })
+      this.elementRef.nativeElement.focus();
       }
       if(data.type=='Group'){
         this.userChatActiveService.getGroupInfo(data.id).subscribe((response: any)=>{
@@ -54,6 +57,7 @@ export class UserChatActiveComponent implements OnInit {
           
         }) 
       })
+      this.elementRef.nativeElement.focus();
       }
       if(data.type=='Direct Message'){
         this.titleMenu.name = data.name;
@@ -64,11 +68,13 @@ export class UserChatActiveComponent implements OnInit {
       );
           
         }) 
+        this.elementRef.nativeElement.focus();
       }
 
        
     });
   }
+ 
   returnChatCss(id){
     let rightChatCss= 'message_block msg_left';
     let leftChatCss= 'message_block msg_right';

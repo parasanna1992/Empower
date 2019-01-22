@@ -308,7 +308,8 @@ a{
 .chat_content{
 	padding:15px;
 	overflow-y: auto;
-	max-height: calc(100vh - 128px);
+    max-height: calc(100vh - 128px);
+    min-height: calc(100vh - 128px);
 }
 .message_block{
 	display: table;
@@ -369,7 +370,7 @@ a{
     
 }
 .bottom_content{
-	margin-top: 0px;
+    margin-top: 0px;
 }
 .bottom_content .form-group{
 	display: flex;

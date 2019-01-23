@@ -65,7 +65,7 @@
                     <a (click)="onClickChannel(group._id, typeList[0])">
                      
                         <div class="chat_con">
-                            <h6><i class="fa fa-television"></i> {{group.name}}</h6>
+                            <h6><i class="fa fa-television"></i> {{group.name | titlecase }}</h6>
                         </div>
                 </a></li>
                 
@@ -78,7 +78,7 @@
                         <a (click)="onClickChannel(group._id, typeList[1])">
                          
                             <div class="chat_con">
-                                <h6><i class="fa fa-group"></i> {{group.name}}</h6>
+                                <h6><i class="fa fa-group"></i> {{group.name | titlecase }}</h6>
                             </div>
                     </a></li>
                     
@@ -91,7 +91,7 @@
                     <a (click)="onClickChannel(group._id, typeList[2],group.usernames)">
                       
                         <div class="chat_con">
-                            <h6>{{group.usernames[1]}}</h6>
+                            <h6>{{group.usernames[1] | titlecase }}</h6>
                         </div>
                 </a></li>
                 

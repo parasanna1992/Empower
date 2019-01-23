@@ -12,7 +12,6 @@ import { DialogBoxComponent } from 'src/app/shared/dialog-box/dialog-box.compone
 
 export class UserChatActiveComponent implements OnInit {
   @ViewChild('typeIt') private elementRef: ElementRef;
-  
   messagesList = [];
   messagesSenderList = [];
   messagesReceiverList = [];
@@ -60,8 +59,8 @@ export class UserChatActiveComponent implements OnInit {
       this.elementRef.nativeElement.focus();
       }
       if(data.type=='Direct Message'){
-        this.titleMenu.name = data.name;
-        alert(data.name)
+        this.titleMenu.name = data.name[1];
+        console.log(data.name[1]);
         this.userChatActiveService.getDirectMessageHistory(data.id).subscribe((response: any)=>{
           this.messagesList = response.messages.sort((a: any, b: any) =>
           new Date(a._updatedAt).getTime() - new Date(b._updatedAt).getTime()

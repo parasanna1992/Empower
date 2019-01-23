@@ -36,6 +36,7 @@ export class UserChartsListComponent implements OnInit {
     })
     this.leftMenuService.getRooms().subscribe((response: any)=>{
       this.groupList[2] = response.ims;
+      console.log(this.groupList[2])
     })
     
   }

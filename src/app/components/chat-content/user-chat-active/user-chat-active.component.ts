@@ -88,7 +88,7 @@ export class UserChatActiveComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       height: '600px',
-      width: '600px',
+      width: '400px',
     });
   }
 }

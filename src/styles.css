@@ -644,7 +644,7 @@ a {
 }
 
 .c-list .title::before {
-    content: url("assets/bulb.png");
+    content: url("../src/assets/bulb.png") !important;
     position: absolute;
     left: -12px;
     top: 8px;
@@ -660,7 +660,9 @@ a {
     position: relative;
     
 }
-
+.saveBtn{
+    margin-right: 10px;
+}
 .cus-tabs li,
 .cus-tabs li a,
 .cus-tabs li a:hover,

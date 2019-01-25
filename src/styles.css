@@ -421,7 +421,7 @@ a{
 }
 .empower_sec{
 	float: right;
-	width:30%;
+	width:37%;
 }
 .empower_sec .panel{
 	margin-bottom: 0;
@@ -606,7 +606,9 @@ a {
     right: 10px;
 }
 
-
+.c-search{
+    width:100%;
+}
 .c-search>.form-control {
     border-radius: 0px;
     border-width: 0px;
@@ -988,3 +990,12 @@ hr{
   ::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
+
+ .new-details .mat-form-field{
+     display: block
+ }
+ .custom_upload .content{
+     background: none;
+     min-height: auto;
+    padding: 0;
+ }

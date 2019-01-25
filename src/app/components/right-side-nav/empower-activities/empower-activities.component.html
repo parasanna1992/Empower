@@ -1,126 +1,330 @@
 <div class="empower_sec">
-    <div class="panel panel-default">
-        <div class="panel-heading c-list">
-            <span class="title">Empower</span>
-            <ul class="pull-right c-controls">
-                <li><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal" title="Add new"><i class="fa fa-plus"></i>New</button></li>
-            </ul>
-        </div>
+  <div class="panel panel-default">
+    <div class="panel-heading c-list">
+      <span class="title">Empower</span>
+      <ul class="pull-right c-controls">
+        <li>
+        <button
+          type="button"
+          class="btn btn-primary btn-xs"
+          data-toggle="modal"
+          data-target="#myModal"
+          title="Add new"
+          (click)="openModel()"
+        >New
+        </button>
+      </li>
+      </ul>
+    </div>
+    <div class="input-group c-search">
+      <form novalidate [formGroup]="searchForm">
         <div class="input-group c-search">
-            <input type="text" class="form-control" id="contact-list-search">
-            <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search text-muted"></span></button>
-            </span>
+          <input
+            type="text"
+            class="form-control"
+            id="contact-list-search"
+            formControlName="searchField"
+          />
+          <span class="input-group-btn">
+            <button
+              class="btn btn-default"
+              type="submit"
+              [disabled]="searchForm.invalid"
+              (click)="searchResult()"
+            >
+              <span class="material-icons text-muted"><i class="fa fa-search"></i></span>
+            </button>
+          </span>
         </div>
-        <!-- Tabs -->
-        <ul class="nav nav-tabs cus-tabs">
+      </form>
+    </div>
+    <!-- Tabs -->
+    <!-- <ul class="nav nav-tabs cus-tabs">
             <li class="active"><a data-toggle="tab" href="#relevant">Relevant</a></li>
             <li><a data-toggle="tab" href="#favorite">Favorite</a></li>
             <li><a data-toggle="tab" href="#recent">Recent</a></li>
+        </ul> -->
+    <mat-tab-group>
+      <mat-tab label="Relevant">
+        Relevant content comes here
+        <ul class="list-group" id="contact-list">
+          <li
+            class="list-group-item"
+            *ngFor="let content of showFileData; let i = index"
+          >
+            <div class="col-xs-12 col-sm-12">
+              <div class="icon-group pull-left">
+                <span class="fa fa-link"></span>
+              </div>
+              <span class="name">
+                <a target="_blank" href="{{ content['url'] }}">{{
+                  content["title"]
+                }}</a>
+              </span>
+              <br />
+              <span class="c-info">{{ content["description"] }}</span>
+              <div class="ext-icons">
+                <span class="material-icons"> share </span>
+                <span class="material-icons"> launch </span>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </li>
         </ul>
-        <!-- Tab content -->
-        <div class="tab-content">
-            <div id="relevant" class="tab-pane fade in active">
-                <ul class="list-group" id="contact-list">
-                    <li class="list-group-item">
-                        <div class="icon-group pull-left">
-                            <span class="fa fa-link"></span>
-                            <span class="name"><a href="#">Title Text</a></span>
-                        </div>
-                        <div class="ext-icons pull-right">
-                            <span class="fa fa-share-alt"></span>
-                            <span class="fa fa-external-link"></span>
-                        </div>
-                        <div class="clearfix"></div>
-                         <p class="c-info">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>    
-                        
-                    </li>
-                    <li class="list-group-item">
-                       
-                            <div class="icon-group pull-left">
-                                <span class="fa fa-file-video-o"></span>
-                                <span class="name"><a href="#">Title Text</a></span>
-                            </div>
-                            <div class="ext-icons pull-right">
-                                <span class="fa fa-share-alt"></span>
-                                <span class="fa fa-external-link"></span>
-                            </div>
-                            <div class="clearfix"></div>
-                            <p class="c-info">Contrary to popular belief, Lorem Ipsum is not simply random text.</p>
-                            
-                        
-                        
-                    </li>
-                    <li class="list-group-item">        
-                       <div class="icon-group pull-left">
-                            <span class="fa fa-files-o"></span>
-                            <span class="name"><a href="">Title Text</a></span>
-                        </div>
-                        <div class="ext-icons pull-right">
-                            <span class="fa fa-share-alt"></span>
-                            <span class="fa fa-external-link"></span>
-                        </div>
-                        <div class="clearfix"></div>
-                        <p class="c-info">Lorem ipsum, in graphical and textual context, refers to filler text that is placed in a document or visual presentation.</p>
-                        
-                    </li>
-                    <li class="list-group-item">
-                        
-                            <div class="icon-group pull-left">
-                                <span class="fa fa-link"></span>
-                                <span class="name"><a href="">Title Text</a></span>
-                            </div>
-                            <div class="ext-icons pull-right">
-                                <span class="fa fa-share-alt"></span>
-                                <span class="fa fa-external-link"></span>
-                            </div>
-                            <div class="clearfix"></div>
-                            <p class="c-info">It is a long established fact that a reader will be distracted by the readable content of a page</p>
-                            
-                        
-                        
-                    </li>
-                    <li class="list-group-item">
-                        
-                            <div class="icon-group pull-left">
-                                <span class="fa fa-link"></span>
-                                <span class="name"><a href="">Title Text</a></span>
-                            </div>
-                            <div class="ext-icons pull-right">
-                                <span class="fa fa-share-alt"></span>
-                                <span class="fa fa-external-link"></span>
-                            </div>
-                            <div class="clearfix"></div>
-                            <p class="c-info">It is a long established fact that a reader will be distracted by the readable content of a page</p>
-                            
-                        
-                        
-                    </li>
-                    <li class="list-group-item">
-                        
-                            <div class="icon-group pull-left">
-                                <span class="fa fa-link"></span>
-                                <span class="name"><a href="">Title Text</a></span>
-                            </div>
-                            <div class="ext-icons pull-right">
-                                <span class="fa fa-share-alt"></span>
-                                <span class="fa fa-external-link"></span>
-                            </div>
-                            <div class="clearfix"></div>
-                            <p class="c-info">It is a long established fact that a reader will be distracted by the readable content of a page</p>
-                            
-                        
-                        
-                    </li>
-                </ul>
+      </mat-tab>
+      <mat-tab label="Favorite"> Favorite content comes here </mat-tab>
+      <mat-tab label="Recent">Recent content comes here </mat-tab>
+    </mat-tab-group>
+    <!-- Tab content -->
+    <!-- <div class="tab-content">
+      <div id="relevant" class="tab-pane fade in active">
+        <ul class="list-group" id="contact-list">
+          <li class="list-group-item">
+            <div class="icon-group pull-left">
+              <span class="fa fa-link"></span>
+              <span class="name"><a href="#">Title Text</a></span>
             </div>
-            <div id="favorite" class="tab-pane fade">
-                Favorite content comes here
+            <div class="ext-icons pull-right">
+              <span class="fa fa-share-alt"></span>
+              <span class="fa fa-external-link"></span>
             </div>
-            <div id="recent" class="tab-pane fade">
-                Recent content comes here
+            <div class="clearfix"></div>
+            <p class="c-info">
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout.
+            </p>
+          </li>
+          <li class="list-group-item">
+            <div class="icon-group pull-left">
+              <span class="fa fa-file-video-o"></span>
+              <span class="name"><a href="#">Title Text</a></span>
             </div>
+            <div class="ext-icons pull-right">
+              <span class="fa fa-share-alt"></span>
+              <span class="fa fa-external-link"></span>
+            </div>
+            <div class="clearfix"></div>
+            <p class="c-info">
+              Contrary to popular belief, Lorem Ipsum is not simply random text.
+            </p>
+          </li>
+          <li class="list-group-item">
+            <div class="icon-group pull-left">
+              <span class="fa fa-files-o"></span>
+              <span class="name"><a href="">Title Text</a></span>
+            </div>
+            <div class="ext-icons pull-right">
+              <span class="fa fa-share-alt"></span>
+              <span class="fa fa-external-link"></span>
+            </div>
+            <div class="clearfix"></div>
+            <p class="c-info">
+              Lorem ipsum, in graphical and textual context, refers to filler
+              text that is placed in a document or visual presentation.
+            </p>
+          </li>
+          <li class="list-group-item">
+            <div class="icon-group pull-left">
+              <span class="fa fa-link"></span>
+              <span class="name"><a href="">Title Text</a></span>
+            </div>
+            <div class="ext-icons pull-right">
+              <span class="fa fa-share-alt"></span>
+              <span class="fa fa-external-link"></span>
+            </div>
+            <div class="clearfix"></div>
+            <p class="c-info">
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page
+            </p>
+          </li>
+          <li class="list-group-item">
+            <div class="icon-group pull-left">
+              <span class="fa fa-link"></span>
+              <span class="name"><a href="">Title Text</a></span>
+            </div>
+            <div class="ext-icons pull-right">
+              <span class="fa fa-share-alt"></span>
+              <span class="fa fa-external-link"></span>
+            </div>
+            <div class="clearfix"></div>
+            <p class="c-info">
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page
+            </p>
+          </li>
+          <li class="list-group-item">
+            <div class="icon-group pull-left">
+              <span class="fa fa-link"></span>
+              <span class="name"><a href="">Title Text</a></span>
+            </div>
+            <div class="ext-icons pull-right">
+              <span class="fa fa-share-alt"></span>
+              <span class="fa fa-external-link"></span>
+            </div>
+            <div class="clearfix"></div>
+            <p class="c-info">
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div id="favorite" class="tab-pane fade">Favorite content comes here</div>
+      <div id="recent" class="tab-pane fade">Recent content comes here</div>
+    </div> -->
+    <!-- Tab content -->
+  </div>
+  <div
+    id="cant-do-all-the-work-for-you"
+    class="modal fade bs-example-modal-sm"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="mySmallModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-hidden="true"
+          >
+            ×
+          </button>
+          <h4 class="modal-title" id="mySmallModalLabel">Ooops!!!</h4>
         </div>
-        <!-- Tab content -->
+        <div class="modal-body">
+          <p>
+            I am being lazy and do not want to program an "Add User" section
+            into this snippet... So it looks like you'll have to do that for
+            yourself.
+          </p>
+          <br />
+          <p>
+            <strong
+              >Sorry <br />
+              ~ Mouse0270</strong
+            >
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
+  <!-- JavaScrip Search Plugin -->
+  <script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
 </div>
+<div class="backdrop" [ngStyle]="{ display: display }"></div>
+
+<div
+  class="{{ modalClass }}"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display }"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading c-list">
+              <span class="title">Empower</span>
+              <ul class="pull-right c-controls">
+                <li>
+                  <a type="button" data-dismiss="modal" (click)="closeModel()">
+                    <i class="material-icons"> close </i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+              <div class="col-xs-6 new-title"><p class="">New</p></div>
+              <form
+                novalidate
+                [formGroup]="fileUploaderForm"
+                (ngSubmit)="onSubmit(fileUploaderForm.value)"
+              >
+                <div class="col-xs-6 btns">
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    [disabled]="fileUploaderForm.invalid || fileName == null"
+                  >
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-default"
+                    (click)="closeModel()"
+                  >
+                    Cancel
+                  </button>
+                </div>
+                <div class="col-xs-12 new-details">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Enter Title"
+                      formControlName="title"
+                    />
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <textarea
+                      matInput
+                      placeholder="Enter Text"
+                      formControlName="description"
+                    ></textarea>
+                  </mat-form-field>
+
+                  <div class="custom_upload">
+                    <file-drop
+                      headertext="Drop files here"
+                      (onFileDrop)="dropped($event)"
+                      (onFileOver)="fileOver($event)"
+                      (onFileLeave)="fileLeave($event)"
+                    >
+                      <span></span>
+                    </file-drop>
+                  </div>
+                  <hr />
+                  {{ fileName }}
+                  <h4 class="heading">Permissions/Access</h4>
+                  <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                      <input
+                        type="text"
+                        class="  search-query form-control"
+                        placeholder="Search"
+                        formControlName="permission"
+                      />
+                      <span class="input-group-btn">
+                        <button class="btn btn-danger" type="button">
+                          <span class="material-icons text-muted">search</span>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Search-result -->
+
+                  <!-- <div class="name-list">
+                            <button class="btn btn-default btn-xs">John Doe
+                              <i class="fa fa-close"></i>
+                            </button>
+                            <button class="btn btn-default btn-xs">User Group1
+                              <i class="fa fa-close"></i>
+                            </button>
+          
+                          </div> -->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.modal !-->

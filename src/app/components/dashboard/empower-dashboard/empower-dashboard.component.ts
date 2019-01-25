@@ -7,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmpowerDashboardComponent implements OnInit {
   toggleValue=true;
-  contentTabWidth="70%";
+  contentTabWidth="63%";
   toggleTitle(){
     this.toggleValue=!(this.toggleValue);
     if(this.toggleValue==false){
       this.contentTabWidth="98%"
     }else{
-      this.contentTabWidth="70%"
+      this.contentTabWidth="63%"
     }
    
     console.log("called")

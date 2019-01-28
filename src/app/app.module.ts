@@ -53,6 +53,7 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { AutoGrowDirective } from './directives/auto-grow.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +64,8 @@ import {
     EmpowerDashboardComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    DialogBoxComponent
+    DialogBoxComponent,
+    AutoGrowDirective
   ],
   imports: [
     FileDropModule,

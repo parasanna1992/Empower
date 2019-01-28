@@ -382,16 +382,14 @@ a{
 	align-items: center;
 }
 .bottom_content .form-group .form-control{
-	border: none;
-    border-radius: 0;
-    padding: 21px;
+	border: 2px solid grey;
+    border-radius: 2px;
     background: #fff;
     font-size: 13px;
     height: 67px;
     resize: none;
     min-height: auto;
     overflow: hidden;
-    border-radius: 10px;
 }
 .bottom_content .form-group .btn{
 	background: #f1f1f1;

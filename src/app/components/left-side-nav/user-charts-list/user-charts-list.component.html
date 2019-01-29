@@ -1,101 +1,209 @@
-
 <div class="sidebar">
-    <div class="top_header">
-        <!-- <div class="profile_block">
-            <ul class="list-unstyled">
-                <li class="user_profile">
-                    <a>
-                    <img src="../../../../assets/download.jpg" alt="img">
-                    <span>{{userInfo.name}}</span>
-                </a>
-                </li>
-                <li>
-                    <a><i class="fa fa-ellipsis-h"></i></a>
-                </li>
-               
-            </ul>
-        </div> -->
-        <div class="profile_block">
-            <div class="user_profile">
-              <a>
-                <img src="../../../../assets/download.jpg" alt="img" />
-                <span>{{ userInfo.name }}</span>
-              </a>
-            </div>
-            <ul class="list-unstyled pull-right">
-              <li [ngClass]="{'show_sec': isClassVisible }" class="dropdown">
-                <a (click)="styleAdd()"
-                  class="dropdown-toggle"
-                  id="dropdownMenuButton"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  ><i class="fa fa-ellipsis-h"></i
-                ></a>
-                <div (mouseleave)="leave($event)" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item "><span class="staus_icon_online"></span>Online</a>
-                  <a class="dropdown-item"><span class="staus_icon_offline"></span>Offline</a>
-                  <a class="dropdown-item"><span class="staus_icon_busy"></span>Busy</a>
-                  <a class="dropdown-item"><span class="staus_icon_unavailable"></span>Unavailable</a>
-                  <a class="dropdown-item test" (click)="logout()"><b>Sign Out</b></a>
-                </div>
-              </li>
-            </ul>
+  <div class="top_header">
+    <div class="profile_block">
+      <div class="user_profile">
+        <a>
+          <img src="../../../../assets/download.jpg" alt="img" />
+          <span>{{ userInfo.name }}</span>
+        </a>
+      </div>
+      <ul class="list-unstyled pull-right">
+        <li [ngClass]="{ show_sec: isClassVisible }" class="dropdown">
+          <a
+            (click)="styleAdd()"
+            class="dropdown-toggle"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            ><i class="fa fa-ellipsis-h"></i
+          ></a>
+          <div
+            (mouseleave)="leave($event)"
+            class="dropdown-menu"
+            aria-labelledby="dropdownMenuButton"
+          >
+            <a class="dropdown-item "
+              ><span class="staus_icon_online"></span>Online</a
+            >
+            <a class="dropdown-item"
+              ><span class="staus_icon_offline"></span>Offline</a
+            >
+            <a class="dropdown-item"
+              ><span class="staus_icon_busy"></span>Busy</a
+            >
+            <a class="dropdown-item"
+              ><span class="staus_icon_unavailable"></span>Unavailable</a
+            >
+            <a class="dropdown-item test" (click)="logout()"><b>Sign Out</b></a>
           </div>
-        <div class="search_block">
-            <div class="form-group">
-                <input type="text" placeholder="Search.." name="search" class="form-control">
-                <button type="submit" class="btn"><i class="fa fa-search"></i></button>
-            </div>
-        </div>
-        <div class="social_icons">
-            <ul class="list-unstyled">
-                <li class="active"><a><i class="fa fa-commenting-o" aria-hidden="true"></i><span>Chats</span></a></li>
-                <li><a><i class="fa fa-phone" aria-hidden="true"></i><span>Calls</span></a></li>
-                <li><a><i class="fa fa-address-book" aria-hidden="true"></i><span>Contacts</span></a></li>
-                <li><a><i class="fa fa-bell" aria-hidden="true"></i><span>Notification</span></a></li>
-            </ul>
-        </div>
+        </li>
+      </ul>
     </div>
-    <div class="inbox_chat">
-        <div class="chat_list">
-            <a class="main_list">Channels </a>
-            <ul class="list-unstyled">
-                <li *ngFor="let group of groupList[0]" >
-                    <a (click)="onClickChannel(group._id, typeList[0])">
-                     
-                        <div class="chat_con">
-                            <h6><i class="fa fa-television"></i> {{group.name | titlecase }}</h6>
-                        </div>
-                </a></li>
-                
-            </ul>
-        </div>
-        <div class="chat_list">
-                <a class="main_list">Private Groups </a>
-                <ul class="list-unstyled">
-                    <li *ngFor="let group of groupList[1]">
-                        <a (click)="onClickChannel(group._id, typeList[1])">
-                         
-                            <div class="chat_con">
-                                <h6><i class="fa fa-group"></i> {{group.name | titlecase }}</h6>
-                            </div>
-                    </a></li>
-                    
-                </ul>
+    <div class="search_block">
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input type="text" placeholder="Search"  matInput [formControl]="myControl" [matAutocomplete]="auto" (keypress)= "getAutoSearch()">
+           
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let searchUser of filteredOptions"
+              [value]="searchUser.name"
+            >
+              {{ searchUser.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="social_icons">
+      <ul class="list-unstyled">
+        <li class="active">
+          <a
+            ><i class="fa fa-commenting-o" aria-hidden="true"></i
+            ><span>Chats</span></a
+          >
+        </li>
+        <li>
+          <a
+            ><i class="fa fa-phone" aria-hidden="true"></i><span>Calls</span></a
+          >
+        </li>
+        <li>
+          <a
+            ><i class="fa fa-address-book" aria-hidden="true"></i
+            ><span>Contacts</span></a
+          >
+        </li>
+        <li>
+          <a
+            ><i class="fa fa-bell" aria-hidden="true"></i
+            ><span>Notification</span></a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="inbox_chat">
+    <!-- <div class="chat_list">
+      <a class="main_list">Channels </a>
+      <ul class="list-unstyled">
+        <li *ngFor="let group of groupList[0]">
+          <a (click)="onClickChannel(group._id, typeList[0])">
+            <div class="chat_con">
+              <h6>
+                <i class="fa fa-television"></i> {{ group.name | titlecase }}
+              </h6>
             </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="chat_list">
+      <a class="main_list">Private Groups </a>
+      <ul class="list-unstyled">
+        <li *ngFor="let group of groupList[1]">
+          <a (click)="onClickChannel(group._id, typeList[1])">
+            <div class="chat_con">
+              <h6><i class="fa fa-group"></i> {{ group.name | titlecase }}</h6>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="chat_list dir_msg">
+      <a class="main_list">Direct Messages</a>
+      <ul class="list-unstyled">
+        <li *ngFor="let group of groupList[2]">
+          <a (click)="onClickChannel(group._id, typeList[2], group.usernames)">
+            <div class="chat_con">
+              <h6>{{ group.usernames[1] | titlecase }}</h6>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div> -->
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel
+        [expanded]="step === 0"
+        (opened)="setStep(0)"
+        hideToggle
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title> Channels </mat-panel-title>
+          <mat-panel-description>
+            <i class="fa fa-plus"></i>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="chat_list">
+          <ul class="list-unstyled">
+            <li *ngFor="let group of groupList[0]">
+              <a (click)="onClickChannel(group._id, typeList[0])">
+                <div class="chat_con">
+                  <h6>
+                    <i class="fa fa-television"></i>
+                    {{ group.name | titlecase }}
+                  </h6>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel
+        [expanded]="step === 1"
+        (opened)="setStep(1)"
+        hideToggle
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>Private Groups </mat-panel-title>
+          <mat-panel-description>
+            <i class="fa fa-plus"></i>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="chat_list">
+          <ul class="list-unstyled">
+            <li *ngFor="let group of groupList[1]">
+              <a (click)="onClickChannel(group._id, typeList[1])">
+                <div class="chat_con">
+                  <h6>
+                    <i class="fa fa-group"></i> {{ group.name | titlecase }}
+                  </h6>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel
+        [expanded]="step === 2"
+        (opened)="setStep(2)"
+        hideToggle
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>Direct Messages </mat-panel-title>
+          <mat-panel-description>
+            <i class="fa fa-plus"></i>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
         <div class="chat_list dir_msg">
-            <a class="main_list">Direct Messages</a>
-            <ul class="list-unstyled">
-                <li *ngFor="let group of groupList[2]">
-                    <a (click)="onClickChannel(group._id, typeList[2],group.usernames)">
-                      
-                        <div class="chat_con">
-                            <h6>{{group.usernames[1] | titlecase }}</h6>
-                        </div>
-                </a></li>
-                
-            </ul>
+          <ul class="list-unstyled">
+            <li *ngFor="let group of groupList[2]">
+              <a
+                (click)="
+                  onClickChannel(group._id, typeList[2], group.usernames)
+                "
+              >
+                <div class="chat_con">
+                  <h6>{{ group.usernames[1] | titlecase }}</h6>
+                </div>
+              </a>
+            </li>
+          </ul>
         </div>
-    </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 </div>

@@ -25,4 +25,8 @@ export class UserChatActiveService {
   getSearchData(id: any,searchText:string){
     return this.dataService.get('chat.search?roomId='+id+'&searchText='+searchText);
   }
+  getUsers(){
+    return this.dataService.get('users.list');
+  }
+ 
 }

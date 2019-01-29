@@ -18,6 +18,7 @@ export class UserChatActiveComponent implements OnInit {
   id;
   titleMenu: any={};
   defaultGeneral="GENERAL"
+  test: any;
   constructor(public dialog: MatDialog,private appState: AppStateService, private userChatActiveService: UserChatActiveService) { }
   
 
@@ -32,6 +33,11 @@ export class UserChatActiveComponent implements OnInit {
   );
       
     }) 
+    this.userChatActiveService.getUsers().subscribe((response: any)=>{
+      this.test=response.users;
+       console.log("hai"+JSON.stringify(this.test))
+    }) 
+
     this.appState.event.subscribe((data: any) => {
       if(data.type=='Channel'){
         this.userChatActiveService.getChannelInfo(data.id).subscribe((response: any)=>{
@@ -60,7 +66,7 @@ export class UserChatActiveComponent implements OnInit {
       }
       if(data.type=='Direct Message'){
         this.titleMenu.name = data.name[1];
-        console.log(data.name[1]);
+        // console.log(data.name[1]);
         this.userChatActiveService.getDirectMessageHistory(data.id).subscribe((response: any)=>{
           this.messagesList = response.messages.sort((a: any, b: any) =>
           new Date(a._updatedAt).getTime() - new Date(b._updatedAt).getTime()

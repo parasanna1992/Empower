@@ -14,22 +14,22 @@ export class DialogBoxComponent implements OnInit {
   constructor(private appState: AppStateService,private userChatActiveService: UserChatActiveService) { }
   ngOnInit() {
     this.roomId=sessionStorage.getItem('roomId');
-    console.log(this.roomId);
+    // console.log(this.roomId);
   }
   searchResults(){
-  console.log(this.searchValue);
+  // console.log(this.searchValue);
   if(this.roomId){
     this.userChatActiveService.getSearchData(this.roomId,this.searchValue).subscribe((response: any)=>{
       this.messagesList= response.messages;
-      console.log(this.messagesList);
-      console.log(response);
+      // console.log(this.messagesList);
+      // console.log(response);
     })
   }
   else{
     this.userChatActiveService.getSearchData('GENERAL',this.searchValue).subscribe((response: any)=>{
       this.messagesList= response.messages;
-      console.log(this.messagesList);
-      console.log(response);
+      // console.log(this.messagesList);
+      // console.log(response);
     })
   }
   

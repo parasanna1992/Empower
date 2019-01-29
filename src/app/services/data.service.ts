@@ -35,7 +35,7 @@ export class DataService {
                                 
   get(contextUrl : string){
 
-    console.log(this.baseUrl+contextUrl);
+    // console.log(this.baseUrl+contextUrl);
     return this.http.get(this.baseUrl+ contextUrl , this.httpOptions);
   }
   login(contextUrl: string, postData: any)
@@ -53,7 +53,7 @@ export class DataService {
   }
 
   delete(contextUrl: string){ 
-    console.log(this.baseUrl+contextUrl);
+    // console.log(this.baseUrl+contextUrl);
     return this.http.put(this.baseUrl + contextUrl, this.httpOptions);
   }
 

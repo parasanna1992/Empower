@@ -32,7 +32,7 @@ export class LoginPageComponent implements OnInit {
     
     let oAuthToken: string;
     let userId: string;
-    console.log(value);
+    // console.log(value);
     this.loginService.loginApi(value).subscribe((response: any)=> {
       if(response.status == 'success'){
       

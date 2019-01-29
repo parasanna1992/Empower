@@ -30,7 +30,7 @@
               class="btn btn-default"
               type="submit"
               [disabled]="searchForm.invalid"
-              (click)="searchResult()"
+              (click)="searchResult(searchForm.get('searchField').value)"
             >
               <span class="material-icons text-muted"><i class="fa fa-search"></i></span>
             </button>
@@ -46,7 +46,6 @@
         </ul> -->
     <mat-tab-group>
       <mat-tab label="Relevant">
-        Relevant content comes here
         <ul class="list-group" id="contact-list">
           <li
             class="list-group-item"

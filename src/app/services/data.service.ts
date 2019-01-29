@@ -9,6 +9,7 @@ export class DataService {
 
   oauthToken: string
   baseUrl: string;
+  empowerUrl: string;
   authUrl: string;
   authUrlLogout:string;
   httpOptions: any ={}
@@ -20,6 +21,7 @@ export class DataService {
 
     this.setHeaders(sessionStorage.getItem("OAuthToken"), sessionStorage.getItem("userId"));
     this.baseUrl= environment.host;
+    this.empowerUrl = environment.host1
   }
 
   setHeaders(oauthToken:string, userId: string){
@@ -55,6 +57,12 @@ export class DataService {
   delete(contextUrl: string){ 
     // console.log(this.baseUrl+contextUrl);
     return this.http.put(this.baseUrl + contextUrl, this.httpOptions);
+  }
+  empowerPost(contextUrl: string, postData: any){
+    return this.http.post(this.empowerUrl + contextUrl, postData);
+  }
+  empowerGet(contextUrl : string){
+    return this.http.get(this.empowerUrl+ contextUrl);
   }
 
 }

@@ -1,0 +1,94 @@
+<div
+  class="{{ modalClass }}"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: display }"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading c-list">
+              <span class="title">Empower</span>
+              <ul class="pull-right c-controls">
+                <li class="closeBtn">
+                  <button class="btn" type="button" data-dismiss="modal" (click)="onNoClick()">
+                      <i class="fa fa-close"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="row">
+              <div class="col-xs-6 new-title"><p class="">New</p></div>
+              <form
+                novalidate
+                [formGroup]="fileUploaderForm"
+                (ngSubmit)="onSubmit(fileUploaderForm.value)"
+              >
+                <div class="col-xs-6 btns">
+                  <button
+                    type="submit"
+                    class="btn btn-primary saveBtn"
+                    [disabled]="fileUploaderForm.invalid || fileName == null"
+                  >
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                  >
+                    Cancel
+                  </button>
+                </div>
+                <div class="col-xs-12 new-details">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Enter Title"
+                      formControlName="title"
+                    />
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                    <textarea
+                      matInput
+                      placeholder="Enter Text"
+                      formControlName="description"
+                    ></textarea>
+                  </mat-form-field>
+
+                  <div class="custom_upload">
+                    <file-drop
+                      headertext="Drop files here"
+                      (onFileDrop)="dropped($event)"
+                    >
+                      <span></span>
+                    </file-drop>
+                  </div>
+                  <hr />
+                  {{ fileName }}
+                  <h4 class="heading">Permissions/Access</h4>
+                  <div id="custom-search-input">
+                    <div class="input-group col-md-12">
+                      <input
+                        type="text"
+                        class="  search-query form-control"
+                        placeholder="Search"
+                        formControlName="permission"
+                      />
+                      <span class="input-group-btn">
+                        <button class="btn btn-danger" type="button">
+                            <span class="material-icons text-muted"><i class="fa fa-search"></i></span>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

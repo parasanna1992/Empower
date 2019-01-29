@@ -15,6 +15,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import { DialogBoxComponent } from './shared/dialog-box/dialog-box.component';
+
+import { ToastrModule } from 'ngx-toastr';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -54,6 +56,7 @@ import {
   MatTreeModule,
 } from '@angular/material';
 import { AutoGrowDirective } from './directives/auto-grow.directive';
+import { EmpowerModalPopUpComponent } from './shared/empower-modal-pop-up/empower-modal-pop-up.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,9 +68,13 @@ import { AutoGrowDirective } from './directives/auto-grow.directive';
     SignUpComponent,
     ForgotPasswordComponent,
     DialogBoxComponent,
-    AutoGrowDirective
+    AutoGrowDirective,
+    EmpowerModalPopUpComponent
   ],
+  
   imports: [
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), 
     FileDropModule,
     AngularFileUploaderModule,
     FormsModule,
@@ -114,7 +121,8 @@ import { AutoGrowDirective } from './directives/auto-grow.directive';
     MatTreeModule,
   ],
   entryComponents:[
-    DialogBoxComponent
+    DialogBoxComponent,
+    EmpowerModalPopUpComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

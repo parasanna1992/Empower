@@ -25,4 +25,7 @@ export class UserChatActiveService {
   getSearchData(id: any,searchText:string){
     return this.dataService.get('chat.search?roomId='+id+'&searchText='+searchText);
   }
+  sendMessage(message: any){
+    return this.dataService.post('chat.sendMessage',message);
+  }
 }

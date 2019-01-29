@@ -309,9 +309,14 @@ a{
 	padding:15px;
 	overflow-y: auto;
     max-height: calc(100vh - 128px);
-    min-height: calc(100vh - 128px);
+    min-height: calc(100vh - 128px); 
     display: flex;
     flex-direction: column-reverse;
+}
+.chat_height{
+    position: fixed;
+    bottom: 0px;
+    width: 38%;
 }
 .message_block{
 	display: table;
@@ -378,18 +383,29 @@ a{
 	display: flex;
 	width: 100%;
 	margin-bottom: 0;
-	border-top:1px solid #f1f1f1;
+	border: 2px solid grey;
 	align-items: center;
 }
 .bottom_content .form-group .form-control{
-	border: 2px solid grey;
+	
     border-radius: 2px;
     background: #fff;
     font-size: 13px;
     height: 67px;
     resize: none;
     min-height: auto;
-    overflow: hidden;
+    max-height: 175px;
+
+    overflow: auto !important;
+}
+.bottom_content .btn{
+    box-shadow: none;
+    background: #f1f1f1;
+    border: 1px solid #ddd;
+    border-left: none;
+}
+.borderNone{
+    border: none !important
 }
 .bottom_content .form-group .btn{
 	background: #f1f1f1;
@@ -397,7 +413,7 @@ a{
     border-radius: 0;
     padding: 6px 15px;
     border: 1px solid #ddd;
-    height: 44px;
+    height: 50px;
 }
 .bottom_content .form-group a{
 	padding: 6px 15px;
@@ -407,7 +423,7 @@ a{
     font-size: 20px;
     border: 1px solid #ddd;
     border-left: none;
-    height: 44px;
+    height: 50px;
 }
 .bottom_content .form-group a i{
 	line-height: 30px;

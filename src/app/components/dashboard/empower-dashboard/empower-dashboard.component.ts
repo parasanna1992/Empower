@@ -16,7 +16,7 @@ export class EmpowerDashboardComponent implements OnInit {
       this.contentTabWidth="63%"
     }
    
-    console.log("called")
+    // console.log("called")
   }
   constructor() { }
 

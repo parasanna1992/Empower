@@ -56,12 +56,21 @@ export class EmpowerActivitiesComponent implements OnInit {
     this.showFileData=[];
     this.fileDataArray=[];
 
+<<<<<<< HEAD
     this.empowerService.getFileDataBySearch(value).subscribe((response: any)=>{
       console.log(response);
       
       this.fileDataArray.push(response.entity.records);
       console.log(this.fileDataArray[0].length);
       this.extractFileData();
+=======
+    this.empowerService.getFileData(this.searchField).subscribe((response: any)=>{
+      // console.log(response);
+      
+      this.fileDataArray.push(response.entity.records);
+      // console.log(this.fileDataArray[0].length);
+      this.extractFileData()
+>>>>>>> 322fa0fb5d01acde88fb2c20f212bf11c6eb9d82
     })
   }
 
@@ -76,8 +85,8 @@ export class EmpowerActivitiesComponent implements OnInit {
        fileDetails["description"] = fileDataArrayObj[4]["value"];
        this.showFileData.push(fileDetails);
        }
-       console.log("filedataarray---------------",this.fileDataArray);
-         console.log("file details---------------",fileDetails);
+       // console.log("filedataarray---------------",this.fileDataArray);
+         // console.log("file details---------------",fileDetails);
       }
 
       public dropped(event: UploadEvent) {
@@ -90,7 +99,7 @@ export class EmpowerActivitiesComponent implements OnInit {
             fileEntry.file((file: File) => {
      
               // Here you can access the real file
-              console.log(droppedFile.relativePath, file);
+              // console.log(droppedFile.relativePath, file);
      
               var permissions = [ 'all'];
               //You could upload it like this:
@@ -107,17 +116,17 @@ export class EmpowerActivitiesComponent implements OnInit {
           } else {
             // It was a directory (empty directories are added, otherwise only files)
             const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
-            console.log(droppedFile.relativePath, fileEntry);
+            // console.log(droppedFile.relativePath, fileEntry);
           }
         }
       }
      
       public fileOver(event){
-        console.log(event);
+        // console.log(event);
       }
      
       public fileLeave(event){
-        console.log(event);
+        // console.log(event);
       }
       openModel(){
         this.display='block';
@@ -131,6 +140,7 @@ export class EmpowerActivitiesComponent implements OnInit {
       }
       // onSubmit(formValue){
       
+<<<<<<< HEAD
       //   this.formData.append('title',formValue.title);
       //   this.formData.append('description',formValue.description);
       //   this.formData.append('permissions',formValue.permission);
@@ -139,6 +149,16 @@ export class EmpowerActivitiesComponent implements OnInit {
       //   const headers = new HttpHeaders({
       //     'security-token': 'mytoken'
       //   })
+=======
+        this.formData.append('title',formValue.title);
+        this.formData.append('description',formValue.description);
+        this.formData.append('permissions',formValue.permission);
+        this.formData.append('security' ,'public');
+        // console.log(this.formData);
+        const headers = new HttpHeaders({
+          'security-token': 'mytoken'
+        })
+>>>>>>> 322fa0fb5d01acde88fb2c20f212bf11c6eb9d82
         
       //   this.empowerService.fileUpload(this.formData)
       //         .subscribe(data => {

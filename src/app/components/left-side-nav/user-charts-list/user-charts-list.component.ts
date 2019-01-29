@@ -72,10 +72,10 @@ export class UserChartsListComponent implements OnInit {
      // console.log(this.groupList[1])
     })
     this.userChatActiveService.getUsers().subscribe((response: any)=>{
-      // this.test=response.users;
-      // for(let item of this.test){
-      //   this.searchUser.push(item);
-      // }
+      this.test=response.users;
+      for(let item of this.test){
+        this.searchUser.push(item);
+      }
     }) 
     this.leftMenuService.getChannel().subscribe((response: any)=>{
       this.groupList[0] = response.channels;

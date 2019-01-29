@@ -43,7 +43,7 @@
     <div class="search_block">
       <form class="example-form">
         <mat-form-field >
-          <input type="text" placeholder="Source"  matInput [formControl]="myControl" [matAutocomplete]="auto" (keypress)="autoPopulate()">
+          <input type="text" placeholder="Search here..."  matInput [formControl]="myControl" [matAutocomplete]="auto" (keypress)="autoPopulate()">
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of flightSrcFilteredOptions | async" [value]="option.name">
               {{option.name}}

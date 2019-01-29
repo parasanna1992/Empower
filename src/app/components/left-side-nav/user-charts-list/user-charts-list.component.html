@@ -43,7 +43,7 @@
     <div class="search_block">
       <form class="example-form">
         <mat-form-field class="example-full-width">
-          <input type="text" placeholder="Search"  matInput [formControl]="myControl" [matAutocomplete]="auto" (keypress)= "getAutoSearch()">
+          <input type="text" placeholder="Search"  matInput [(ngModel)]="myControl" [matAutocomplete]="auto" (keypress)= "getAutoSearch()">
            
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option

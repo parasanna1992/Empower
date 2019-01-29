@@ -42,15 +42,11 @@
     </div>
     <div class="search_block">
       <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <input type="text" placeholder="Search"  matInput [formControl]="myControl" [matAutocomplete]="auto" (keypress)= "getAutoSearch()">
-           
+        <mat-form-field >
+          <input type="text" placeholder="Source"  matInput [formControl]="myControl" [matAutocomplete]="auto" (keypress)="autoPopulate()">
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option
-              *ngFor="let searchUser of filteredOptions"
-              [value]="searchUser.name"
-            >
-              {{ searchUser.name}}
+            <mat-option *ngFor="let option of flightSrcFilteredOptions | async" [value]="option.name">
+              {{option.name}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>

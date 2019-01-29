@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LeftMenuService } from '../../../services/left-menu.service';
 import { AppStateService } from '../../../services/app-state.service';
 import {FormControl} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -34,6 +35,7 @@ export class UserChartsListComponent implements OnInit {
     {name: 'Igor'}
   ];
   filteredOptions: Observable<string[]>;
+  flightSrcFilteredOptions: Observable<string[]>;
   searchUser: any = [];
   userInfo: any = {};
   groupList = [];
@@ -42,7 +44,7 @@ export class UserChartsListComponent implements OnInit {
   isClassVisible=false;
   test: any;
   myControl = new FormControl();
- constructor(private leftMenuService: LeftMenuService,private router : Router, private appState: AppStateService,private userChatActiveService: UserChatActiveService) { 
+ constructor(private fb: FormBuilder,private leftMenuService: LeftMenuService,private router : Router, private appState: AppStateService,private userChatActiveService: UserChatActiveService) { 
     this.typeList = ['Channel', 'Group', 'Direct Message'];
     for(let i = 0;i<3; i++){
       this.groupList.push(this.roomList);
@@ -90,6 +92,13 @@ export class UserChartsListComponent implements OnInit {
       // }
       // console.log(this.searchUser)
     })
+}
+autoPopulate(){
+  this.flightSrcFilteredOptions = this.myControl.valueChanges
+  .pipe(
+    startWith(''),
+    map(value => this._filter(value))
+  );
 }
 getAutoSearch(){
   //console.log(JSON.stringify(this.searchUser))

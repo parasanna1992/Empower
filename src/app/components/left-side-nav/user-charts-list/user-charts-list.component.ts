@@ -117,11 +117,12 @@ private _filter(value): string[] {
 }
     
 
-  onClickChannel(id: string, type: string, name: string){
+  onClickChannel(id: string, type: string, count: string){
     sessionStorage.removeItem('roomId');
     let object: any={};
     object.id = id;
-    object.type = type
+    object.type = type;
+    object.count = count;
     if(type=='Direct Message'){
       object.name = name;
     }
@@ -129,7 +130,19 @@ private _filter(value): string[] {
     this.appState.publish(object);
    sessionStorage.setItem('roomId',object.id);
   }
-
+  onClickChannel1(id: string, type: string, name: string){
+    sessionStorage.removeItem('roomId');
+    sessionStorage.removeItem('usersCount');
+    let object: any={};
+    object.id = id;
+    object.type = type;
+    if(type=='Direct Message'){
+      object.name = name;
+    }
+  
+    this.appState.publish(object);
+   sessionStorage.setItem('roomId',object.id);
+  }
   logout(){
     this.router.navigate(['/login']);
     sessionStorage.clear();

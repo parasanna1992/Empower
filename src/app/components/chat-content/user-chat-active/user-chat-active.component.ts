@@ -25,6 +25,9 @@ export class UserChatActiveComponent implements OnInit {
   };
   chatId: string;
   messageForm: FormGroup;
+  messageCount: any;
+  usersCount: string;
+  participantsValue=true;
   constructor(public dialog: MatDialog,private appState: AppStateService, private userChatActiveService: UserChatActiveService,
   private fb: FormBuilder) {
     this.messageForm = this.fb.group({
@@ -37,6 +40,7 @@ export class UserChatActiveComponent implements OnInit {
   
 
   ngOnInit() {
+    this.usersCount=sessionStorage.getItem('usersCount');
     this.elementRef.nativeElement.focus();
     this.id = sessionStorage.getItem('userId');
     this.titleMenu.name="general";
@@ -46,19 +50,21 @@ export class UserChatActiveComponent implements OnInit {
       new Date(a._updatedAt).getTime() - new Date(b._updatedAt).getTime()
      
   );
-      
+    this.messageCount=this.messagesList.length;
     }) 
     this.userChatActiveService.getUsers().subscribe((response: any)=>{
       this.test=response.users;
-       console.log("hai"+JSON.stringify(this.test))
+      // console.log("hai"+JSON.stringify(this.test))
     }) 
 
     this.appState.event.subscribe((data: any) => {
+      this.usersCount=data.count;
       this.chatId = data.id
       this.messageForm.patchValue({
         rid: data.id
       });
       if(data.type=='Channel'){
+        this.participantsValue=true;
         this.userChatActiveService.getChannelInfo(data.id).subscribe((response: any)=>{
           this.titleMenu.name = response.channel.name;
         
@@ -66,12 +72,13 @@ export class UserChatActiveComponent implements OnInit {
           this.messagesList = response.messages.sort((a: any, b: any) =>
           new Date(a._updatedAt).getTime() - new Date(b._updatedAt).getTime()
       );
-          
+          this.messageCount=this.messagesList.length;
         }) 
       })
       this.elementRef.nativeElement.focus();
       }
       if(data.type=='Group'){
+        this.participantsValue=true;
         this.userChatActiveService.getGroupInfo(data.id).subscribe((response: any)=>{
           this.titleMenu.name = response.group.name;
         this.messageForm.patchValue({
@@ -81,19 +88,20 @@ export class UserChatActiveComponent implements OnInit {
           this.messagesList = response.messages.sort((a: any, b: any) =>
           new Date(a._updatedAt).getTime() - new Date(b._updatedAt).getTime()
       );
-          
+      this.messageCount=this.messagesList.length;
         }) 
       })
       this.elementRef.nativeElement.focus();
       }
       if(data.type=='Direct Message'){
+        this.participantsValue=false;
         this.titleMenu.name = data.name[1];
         // console.log(data.name[1]);
         this.userChatActiveService.getDirectMessageHistory(data.id).subscribe((response: any)=>{
           this.messagesList = response.messages.sort((a: any, b: any) =>
           new Date(a._updatedAt).getTime() - new Date(b._updatedAt).getTime()
       );
-          
+      this.messageCount=this.messagesList.length;
         }) 
         this.elementRef.nativeElement.focus();
       }

@@ -134,7 +134,7 @@
         <div class="chat_list">
           <ul class="list-unstyled">
             <li *ngFor="let group of groupList[0]">
-              <a (click)="onClickChannel(group._id, typeList[0])">
+              <a (click)="onClickChannel(group._id, typeList[0],group.usersCount)">
                 <div class="chat_con">
                   <h6>
                     <i class="fa fa-television"></i>
@@ -161,7 +161,7 @@
         <div class="chat_list">
           <ul class="list-unstyled">
             <li *ngFor="let group of groupList[1]">
-              <a (click)="onClickChannel(group._id, typeList[1])">
+              <a (click)="onClickChannel(group._id, typeList[1],group.usersCount)">
                 <div class="chat_con">
                   <h6>
                     <i class="fa fa-group"></i> {{ group.name | titlecase }}
@@ -189,7 +189,7 @@
             <li *ngFor="let group of groupList[2]">
               <a
                 (click)="
-                  onClickChannel(group._id, typeList[2], group.usernames)
+                  onClickChannel1(group._id, typeList[2], group.usernames)
                 "
               >
                 <div class="chat_con">

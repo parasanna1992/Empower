@@ -43,13 +43,8 @@ export class UserChartsListComponent implements OnInit {
   typeList = [];
   isClassVisible=false;
   test: any;
-<<<<<<< HEAD
-  myControl;
- constructor(private leftMenuService: LeftMenuService,private router : Router, private appState: AppStateService,private userChatActiveService: UserChatActiveService) { 
-=======
   myControl = new FormControl();
  constructor(private fb: FormBuilder,private leftMenuService: LeftMenuService,private router : Router, private appState: AppStateService,private userChatActiveService: UserChatActiveService) { 
->>>>>>> dc1e28812339ccba22e11ff237a0d741a69f37e4
     this.typeList = ['Channel', 'Group', 'Direct Message'];
     for(let i = 0;i<3; i++){
       this.groupList.push(this.roomList);

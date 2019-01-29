@@ -42,14 +42,8 @@
     </div>
     <div class="search_block">
       <form class="example-form">
-<<<<<<< HEAD
-        <mat-form-field class="example-full-width">
-          <input type="text" placeholder="Search"  matInput [(ngModel)]="myControl" [matAutocomplete]="auto" (keypress)= "getAutoSearch()">
-           
-=======
         <mat-form-field >
           <input type="text" placeholder="Search here..."  matInput [formControl]="myControl" [matAutocomplete]="auto" (keypress)="autoPopulate()">
->>>>>>> dc1e28812339ccba22e11ff237a0d741a69f37e4
           <mat-autocomplete #auto="matAutocomplete">
             <mat-option *ngFor="let option of flightSrcFilteredOptions | async" [value]="option.name">
               {{option.name}}

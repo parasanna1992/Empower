@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { LeftMenuService } from '../../../services/left-menu.service';
 import { AppStateService } from '../../../services/app-state.service';
 import {FormControl} from '@angular/forms';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,FormArray  } from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UserChatActiveService } from 'src/app/services/user-chat-active.service';
+import { ToastrService } from 'ngx-toastr';
 export interface User {
   name: string;
 }
@@ -16,7 +17,10 @@ export interface User {
   styleUrls: ['./user-charts-list.component.css']
 })
 export class UserChartsListComponent implements OnInit {
+  loginForm : FormGroup;
+  members: FormArray;
   step = 0;
+  member=[];
 
   setStep(index: number) {
     this.step = index;
@@ -34,26 +38,100 @@ export class UserChartsListComponent implements OnInit {
     {name: 'Shelley'},
     {name: 'Igor'}
   ];
+  disabled = false;
+  ShowFilter = false;
+  limitSelection = false;
   filteredOptions: Observable<string[]>;
   flightSrcFilteredOptions: Observable<string[]>;
   searchUser: any = [];
   userInfo: any = {};
+  users: any= [];
   groupList = [];
   roomList = [];
   typeList = [];
   isClassVisible=false;
   test: any;
+  hideModal=true;
+  display= 'none';
+  userDisplay='none';
+  modalClass= 'modal modal_popcontent fade';
   myControl = new FormControl();
- constructor(private fb: FormBuilder,private leftMenuService: LeftMenuService,private router : Router, private appState: AppStateService,private userChatActiveService: UserChatActiveService) { 
-    this.typeList = ['Channel', 'Group', 'Direct Message'];
+  invalidCredentials= false;
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+ constructor(private toastr: ToastrService,private fb: FormBuilder,private leftMenuService: LeftMenuService,private router : Router, private appState: AppStateService,private userChatActiveService: UserChatActiveService) { 
+  this.loginForm = this.fb.group({
+    name:['', Validators.required],
+    members: ['']
+    // this.fb.array([""])
+  })
+  this.typeList = ['Channel', 'Group', 'Direct Message'];
     for(let i = 0;i<3; i++){
       this.groupList.push(this.roomList);
     }
   }
+  get f() { return this.loginForm.controls; }
+  onSubmit(value){
+     console.log(value);
+     value.members=[];
+     value.members=this.member;
+     console.log(value);
+     this.leftMenuService.createChannel(value).subscribe((response: any)=> {
+     this.closeModel();
+     this.toastr.success('Successfully Channel Created');
+     this.loginForm.reset()
+   })
+  }
+  onItemSelect(item: any) {
+    console.log('onItemSelect', item);
+    this.member.push(item.username);
+    console.log(this.member)
+}
+onSelectAll(items: any) {
+    console.log('onSelectAll', items);
+    for(let item of items){
+      this.member.push(item.username);
+      console.log('list--->'+JSON.stringify(this.member))
+    }
+}
+toogleShowFilter() {
+    this.ShowFilter = !this.ShowFilter;
+    this.dropdownSettings = Object.assign({}, this.dropdownSettings, { allowSearchFilter: this.ShowFilter });
+}
 
+handleLimitSelection() {
+    if (this.limitSelection) {
+        this.dropdownSettings = Object.assign({}, this.dropdownSettings, { limitSelection: 2 });
+    } else {
+        this.dropdownSettings = Object.assign({}, this.dropdownSettings, { limitSelection: null });
+    }
+}
+  hideError(){
+    this.invalidCredentials=false;
+  }
+  eventHandler(event) {
+    console.log(event, event.keyCode, event.keyIdentifier);
+    this.userDisplay="none";
+    if(event.keyCode==64){
+      this.userDisplay="block";
+  this.userChatActiveService.getUsers().subscribe((response: any)=>{
+    this.users=response.users;
+    console.log( this.users);
+  })
+    }
+ } 
   ngOnInit() {
     
-   
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: '_id',
+      textField: 'username',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
     let id = sessionStorage.getItem('userId');
     //alert(id);
     this.leftMenuService.getUserInfo(id).subscribe((response: any)=>{
@@ -73,6 +151,8 @@ export class UserChartsListComponent implements OnInit {
     })
     this.userChatActiveService.getUsers().subscribe((response: any)=>{
       this.test=response.users;
+      this.users=this.test;
+      console.log(this.users)
       for(let item of this.test){
         this.searchUser.push(item);
       }
@@ -88,9 +168,9 @@ export class UserChartsListComponent implements OnInit {
       this.groupList[2] = response.ims;
      // this.searchUser.push(response.ims);
       // for(let item of this.groupList[2]){
-      //   this.searchUser.push(item.usernames[1]);
+      //   this.searchUser.push(item.names[1]);
       // }
-      // console.log(this.searchUser)
+      console.log( this.groupList[2])
     })
 }
 autoPopulate(){
@@ -159,5 +239,15 @@ private _filter(value): string[] {
   leave(){
     this.isClassVisible=false;
     // console.log("called")
+  }
+  openModel(){
+    this.display='block';
+    this.modalClass = 'modal modal_popcontent fade in';
+   // this.fileUploaderForm.reset();
+  //  this.fileName=null;
+  }
+  closeModel(){
+    this.display="none";
+    this.modalClass = 'modal modal_popcontent fade';
   }
 }

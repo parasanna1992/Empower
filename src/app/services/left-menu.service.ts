@@ -23,5 +23,8 @@ export class LeftMenuService {
   getChatHistory(){
     
   }
+  createChannel(value: any){
+    return this.dataService.post("channels.create",value);
+  }
   
 }

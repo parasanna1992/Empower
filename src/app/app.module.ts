@@ -15,7 +15,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import { DialogBoxComponent } from './shared/dialog-box/dialog-box.component';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ToastrModule } from 'ngx-toastr';
 import {
   MatAutocompleteModule,
@@ -119,6 +119,7 @@ import { EmpowerModalPopUpComponent } from './shared/empower-modal-pop-up/empowe
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   entryComponents:[
     DialogBoxComponent,

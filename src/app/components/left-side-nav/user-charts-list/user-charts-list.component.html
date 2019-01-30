@@ -35,21 +35,22 @@
             <a class="dropdown-item"
               ><span class="staus_icon_unavailable"></span>Unavailable</a
             >
-            <a class="dropdown-item test" (click)="logout()"><b>Sign Out</b></a>
+            <a class="dropdown-item test" (click)="logout()"><b><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</b></a>
           </div>
         </li>
       </ul>
     </div>
     <div class="search_block">
       <form class="example-form">
-        <mat-form-field >
+        <mat-form-field class="example-full-width">
           <input type="text" placeholder="Search here..."  matInput [formControl]="myControl" [matAutocomplete]="auto" (keypress)="autoPopulate()">
           <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of flightSrcFilteredOptions | async" [value]="option.name">
+            <mat-option *ngFor="let option of flightSrcFilteredOptions | async"  [value]="option.name">
               {{option.name}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
+        <!-- (onSelectionChange)="selected(option)" -->
       </form>
     </div>
     <div class="social_icons">

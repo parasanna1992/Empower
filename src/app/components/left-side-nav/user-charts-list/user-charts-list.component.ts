@@ -100,6 +100,12 @@ autoPopulate(){
     map(value => this._filter(value))
   );
 }
+selected(option:any){
+  let object: any={};
+  object=option;
+  console.log("selected"+object);
+  this. onClickChannel(object.id,object.type,object.usersCount)
+}
 getAutoSearch(){
   //console.log(JSON.stringify(this.searchUser))
   this.filteredOptions = this.searchUser

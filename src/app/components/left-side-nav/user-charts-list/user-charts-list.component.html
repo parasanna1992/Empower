@@ -82,11 +82,11 @@
     </div>
   </div>
   <div class="inbox_chat">
-    <!-- <div class="chat_list">
+    <div class="chat_list">
       <a class="main_list">Channels </a>
       <ul class="list-unstyled">
         <li *ngFor="let group of groupList[0]">
-          <a (click)="onClickChannel(group._id, typeList[0])">
+          <a (click)="onClickChannel(group._id, typeList[0],group.usersCount)">
             <div class="chat_con">
               <h6>
                 <i class="fa fa-television"></i> {{ group.name | titlecase }}
@@ -100,7 +100,7 @@
       <a class="main_list">Private Groups </a>
       <ul class="list-unstyled">
         <li *ngFor="let group of groupList[1]">
-          <a (click)="onClickChannel(group._id, typeList[1])">
+          <a (click)="onClickChannel(group._id, typeList[1],group.usersCount)">
             <div class="chat_con">
               <h6><i class="fa fa-group"></i> {{ group.name | titlecase }}</h6>
             </div>
@@ -112,15 +112,15 @@
       <a class="main_list">Direct Messages</a>
       <ul class="list-unstyled">
         <li *ngFor="let group of groupList[2]">
-          <a (click)="onClickChannel(group._id, typeList[2], group.usernames)">
+          <a (click)="onClickChannel1(group._id, typeList[2], group.usernames)">
             <div class="chat_con">
               <h6>{{ group.usernames[1] | titlecase }}</h6>
             </div>
           </a>
         </li>
       </ul>
-    </div> -->
-    <mat-accordion class="example-headers-align">
+    </div>
+    <!-- <mat-accordion class="example-headers-align">
       <mat-expansion-panel
         [expanded]="step === 0"
         (opened)="setStep(0)"
@@ -201,6 +201,6 @@
           </ul>
         </div>
       </mat-expansion-panel>
-    </mat-accordion>
+    </mat-accordion> -->
   </div>
 </div>

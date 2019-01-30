@@ -8,7 +8,7 @@
             <a>
             <img src="../../../../assets/girl_img.png" alt="img">
             <p>{{titleMenu.name | titlecase }}
-                <span><b  *ngIf="participantsValue">{{usersCount}}participants |</b>   <b>{{messageCount}}</b>Messages  </span> 
+                <span><b  *ngIf="participantsValue"><i class="fa fa-user" aria-hidden="true"></i> &nbsp; {{usersCount}}   |</b> &nbsp;  <b><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;{{messageCount}}&nbsp;</b> </span> 
             </p>
         </a>
         </div>

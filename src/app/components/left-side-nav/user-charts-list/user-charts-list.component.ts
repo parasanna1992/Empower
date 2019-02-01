@@ -8,6 +8,7 @@ import {map, startWith} from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UserChatActiveService } from 'src/app/services/user-chat-active.service';
 import { ToastrService } from 'ngx-toastr';
+import { group } from '@angular/animations';
 export interface User {
   name: string;
 }
@@ -73,26 +74,33 @@ export class UserChartsListComponent implements OnInit {
   }
   get f() { return this.loginForm.controls; }
   onSubmit(value){
-     console.log(value);
+    // console.log(value);
      value.members=[];
      value.members=this.member;
-     console.log(value);
+    // console.log(value);
      this.leftMenuService.createChannel(value).subscribe((response: any)=> {
      this.closeModel();
      this.toastr.success('Successfully Channel Created');
      this.loginForm.reset()
+     this.leftMenuService.getChannel().subscribe((response: any)=>{
+      this.groupList[0] = response.channels;
+     //this.searchUser.push(response.channels);
+      for(let item of this.groupList[0]){
+        this.searchUser.push(item);
+      }
+    })
    })
   }
   onItemSelect(item: any) {
-    console.log('onItemSelect', item);
+   // console.log('onItemSelect', item);
     this.member.push(item.username);
-    console.log(this.member)
+  //  console.log(this.member)
 }
 onSelectAll(items: any) {
-    console.log('onSelectAll', items);
+  //  console.log('onSelectAll', items);
     for(let item of items){
       this.member.push(item.username);
-      console.log('list--->'+JSON.stringify(this.member))
+    //  console.log('list--->'+JSON.stringify(this.member))
     }
 }
 toogleShowFilter() {
@@ -111,13 +119,13 @@ handleLimitSelection() {
     this.invalidCredentials=false;
   }
   eventHandler(event) {
-    console.log(event, event.keyCode, event.keyIdentifier);
+   // console.log(event, event.keyCode, event.keyIdentifier);
     this.userDisplay="none";
     if(event.keyCode==64){
       this.userDisplay="block";
   this.userChatActiveService.getUsers().subscribe((response: any)=>{
     this.users=response.users;
-    console.log( this.users);
+  //  console.log( this.users);
   })
     }
  } 
@@ -139,10 +147,10 @@ handleLimitSelection() {
     })
     this.leftMenuService.getGroups().subscribe((response: any)=>{
       this.groupList[1] = response.groups;
-      console.log('RRAY--->'+JSON.stringify(this.groupList[1]))
+    //  console.log('RRAY--->'+JSON.stringify(this.groupList[1]))
       for(let item of this.groupList[1]){
         this.searchUser.push(item);
-        console.log('list--->'+JSON.stringify(this.searchUser))
+       // console.log('list--->'+JSON.stringify(this.searchUser))
       }
       
       //console.log('hi'+JSON.stringify(this.searchUser))
@@ -152,7 +160,7 @@ handleLimitSelection() {
     this.userChatActiveService.getUsers().subscribe((response: any)=>{
       this.test=response.users;
       this.users=this.test;
-      console.log(this.users)
+    //  console.log(this.users)
       for(let item of this.test){
         this.searchUser.push(item);
       }
@@ -183,7 +191,7 @@ autoPopulate(){
 selected(option:any){
   let object: any={};
   object=option;
-  console.log("selected"+object);
+ // console.log("selected"+object);
   this. onClickChannel(object.id,object.type,object.usersCount)
 }
 getAutoSearch(){
@@ -212,7 +220,6 @@ private _filter(value): string[] {
     if(type=='Direct Message'){
       object.name = name;
     }
-  
     this.appState.publish(object);
    sessionStorage.setItem('roomId',object.id);
   }
@@ -222,12 +229,17 @@ private _filter(value): string[] {
     let object: any={};
     object.id = id;
     object.type = type;
-    if(type=='Direct Message'){
-      object.name = name;
-    }
+    object.name = name;
   
     this.appState.publish(object);
    sessionStorage.setItem('roomId',object.id);
+  }
+  directTest(group:any){
+    let object:any={};
+    object.id=group._id;
+    object.type='Direct Message';
+    object.name=group.usernames[1];
+    this.onClickChannel1(object.id,object.type,object.name);
   }
   logout(){
     this.router.navigate(['/login']);

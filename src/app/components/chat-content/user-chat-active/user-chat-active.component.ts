@@ -18,16 +18,20 @@ export class UserChatActiveComponent implements OnInit {
   messagesSenderList = [];
   messagesReceiverList = [];
   id;
+  users: any= [];
   titleMenu: any={};
   defaultGeneral="GENERAL"
   messageObject: any = {
     message: {}
   };
   chatId: string;
+  userDisplay='none';
   messageForm: FormGroup;
   messageCount: any;
   usersCount: string;
   participantsValue=true;
+  appendUser: string;
+  textMessage: any;
   constructor(public dialog: MatDialog,private appState: AppStateService, private userChatActiveService: UserChatActiveService,
   private fb: FormBuilder) {
     this.messageForm = this.fb.group({
@@ -95,7 +99,7 @@ export class UserChatActiveComponent implements OnInit {
       }
       if(data.type=='Direct Message'){
         this.participantsValue=false;
-        this.titleMenu.name = data.name[1];
+        this.titleMenu.name = data.name;
         // console.log(data.name[1]);
         this.userChatActiveService.getDirectMessageHistory(data.id).subscribe((response: any)=>{
           this.messagesList = response.messages.sort((a: any, b: any) =>
@@ -115,6 +119,17 @@ export class UserChatActiveComponent implements OnInit {
     this.userChatActiveService.sendMessage(this.messageObject).subscribe((response: any)=>{
 
     })
+  }
+  userSelect(group:any){
+    console.log(group);
+    this.appendUser=group.name;
+    //this.textMessage=  this.messageForm.set('msg')
+    this.textMessage=this.messageForm.get('msg').value;
+    this.textMessage=this.textMessage+this.appendUser;
+    this.messageForm.get('msg').setValue(this.textMessage);
+    console.log(this.textMessage);
+    this.userDisplay="none";
+    this.elementRef.nativeElement.focus();
   }
  
   returnChatCss(id){
@@ -141,4 +156,15 @@ export class UserChatActiveComponent implements OnInit {
       data: {id: this.chatId}
     });
   }
+  eventHandler(event) {
+    // console.log(event, event.keyCode, event.keyIdentifier);
+     this.userDisplay="none";
+     if(event.keyCode==64){
+       this.userDisplay="block";
+   this.userChatActiveService.getUsers().subscribe((response: any)=>{
+     this.users=response.users;
+   //  console.log( this.users);
+   })
+     }
+  } 
 }

@@ -1201,3 +1201,20 @@ hr{
       width: 25em;
     }
   }
+  .user_search{
+    background: aliceblue;
+    width: 25%;
+    position: absolute;
+    bottom: 45px;
+}
+.users_list{
+  
+}
+.user_search >ul > li{
+    padding: 5px;
+    display: block;
+}
+.user_search >ul > li:hover{
+    background-color: #a1aed4;
+    cursor: pointer;
+}

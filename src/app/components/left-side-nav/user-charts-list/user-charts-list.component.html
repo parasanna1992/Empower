@@ -139,7 +139,7 @@
       <a class="main_list">Direct Messages</a>
       <ul class="list-unstyled">
         <li *ngFor="let group of groupList[2]">
-          <a (click)="onClickChannel1(group._id, typeList[2], group.names)">
+          <a (click)="directTest(group);">
             <div class="chat_con">
               <h6>{{ group.usernames[1] | titlecase }}</h6>
             </div>
@@ -215,7 +215,6 @@
                   [placeholder]="'------------------Select Users-------------------'"
                   [data]="users"
                   formControlName="members"
-                  [disabled]="disabled"
                   [settings]="dropdownSettings"
                   (onSelect)="onItemSelect($event)"
                   (onSelectAll)="onSelectAll($event)"
@@ -248,10 +247,10 @@
               /> -->
                 <div class="user_search" [ngStyle]="{ display: userDisplay }">
                   <ul class="list-unstyled">
-                    <li *ngFor="let group of users">
+                    <li  *ngFor="let group of users">
                       <!-- <a (click)="onClickChannel1(group._id, typeList[2], group.names)"> -->
                        
-                          <span>{{ group.name}}</span>
+                         <a (click)="userSelect(group)"><span class="users_list" >{{ group.name}}</span></a> 
                      
                      
                     </li>

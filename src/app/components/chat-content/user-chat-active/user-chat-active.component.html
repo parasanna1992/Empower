@@ -38,12 +38,33 @@
         <div class="form-group" >
             
             <button  class="btn" type="submit"><i style="font-size:24px" class="fa fa-smile-o"></i></button> 
-            <textarea appAutoGrow class="form-control borderNone" #typeIt formControlName="msg"></textarea>
+            <textarea placeholder="hai" appAutoGrow class="form-control borderNone" (keypress)="eventHandler($event)" #typeIt formControlName="msg"></textarea>
             <button type="submit" class="btn"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
             <a (click)="openEmpowerDialog()" ><i class="fa fa-paperclip" aria-hidden="true"></i></a>
         
         </div>
     </div>
+    <div class="user_search" [ngStyle]="{ display: userDisplay }">
+        <ul class="list-unstyled">
+          <li (click)="userSelect(group)" *ngFor="let group of users">
+            <!-- <a (click)="onClickChannel1(group._id, typeList[2], group.names)"> -->
+             
+                <a><span class="users_list" >{{ group.name}}</span></a> 
+           
+           
+          </li>
+        </ul>
+      </div>
     </form>
 </div>
+<!-- <input 
+                id="txtmembers"
+                type="members"
+                class="form-control"
+                name="members"
+                placeholder="members"
+                formControlName="members"
+                (click)="hideError()"
+                (keypress)="eventHandler($event)"
+              /> -->
 

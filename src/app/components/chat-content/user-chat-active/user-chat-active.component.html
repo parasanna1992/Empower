@@ -36,7 +36,7 @@
     <form novalidate [formGroup]="messageForm"  (ngSubmit)="onSubmit(messageForm.value)">
     <div class="bottom_content chat_height">
             <div *ngIf="show">
-                    <emoji-mart (emojiSelect)="selectedEmoji($event);" [style]="{ position: 'absolute', bottom: '215px', height: '250px' ,width:'250px' }"></emoji-mart>
+                    <emoji-mart  title="Pick your emoji…" set="messenger" showPreview="false" (emojiSelect)="selectedEmoji($event);" [style]="{ position: 'absolute', bottom: '215px', height: '250px' ,width:'250px' }"></emoji-mart>
                   </div>
         <div class="form-group" >
             

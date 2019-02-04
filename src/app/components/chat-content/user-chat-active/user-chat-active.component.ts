@@ -119,8 +119,8 @@ export class UserChatActiveComponent implements OnInit {
   }
   appendEmoji:string;
   selectedEmoji(value:any){
-    console.log(value.emoji.native);
-    this.appendEmoji=value.emoji.native;
+    console.log(value.emoji.colons);
+    this.appendEmoji=value.emoji.colons;
     this.textMessage=this.messageForm.get('msg').value;
     this.textMessage=this.textMessage+this.appendEmoji;
     this.messageForm.get('msg').setValue(this.textMessage);

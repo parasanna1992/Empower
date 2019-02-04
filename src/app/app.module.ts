@@ -57,6 +57,7 @@ import {
 } from '@angular/material';
 import { AutoGrowDirective } from './directives/auto-grow.directive';
 import { EmpowerModalPopUpComponent } from './shared/empower-modal-pop-up/empower-modal-pop-up.component';
+import { PickerModule } from '@ctrl/ngx-emoji-mart'
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,6 +81,7 @@ import { EmpowerModalPopUpComponent } from './shared/empower-modal-pop-up/empowe
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
+    PickerModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,

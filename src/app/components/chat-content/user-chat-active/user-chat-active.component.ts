@@ -113,6 +113,19 @@ export class UserChatActiveComponent implements OnInit {
        
     });
   }
+  show =false;
+  showEmoji(){
+    this.show=!(this.show);
+  }
+  appendEmoji:string;
+  selectedEmoji(value:any){
+    console.log(value.emoji.native);
+    this.appendEmoji=value.emoji.native;
+    this.textMessage=this.messageForm.get('msg').value;
+    this.textMessage=this.textMessage+this.appendEmoji;
+    this.messageForm.get('msg').setValue(this.textMessage);
+    this.elementRef.nativeElement.focus();
+  }
   onSubmit(value: any){
     this.messageObject.message = value;
     console.log(JSON.stringify(this.messageObject))

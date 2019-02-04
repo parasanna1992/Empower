@@ -2,6 +2,7 @@
 /* @import './styles/bootstrap-3.3.7-dist/css/bootstrap.min.css'; */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@ctrl/ngx-emoji-mart/picker";
 *{
 	padding: 0;
 	margin: 0;
@@ -1206,9 +1207,6 @@ hr{
     width: 25%;
     position: absolute;
     bottom: 45px;
-}
-.users_list{
-  
 }
 .user_search >ul > li{
     padding: 5px;
